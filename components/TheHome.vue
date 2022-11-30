@@ -51,9 +51,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useMangaApi } from '@/services/api/useMangaApi'
+import { useMangaListApiAdapter } from '@/composables/useMangaListApiAdapter'
 
-const { fetchList } = useMangaApi()
+const { fetchList } = useMangaListApiAdapter()
 
 const data = await fetchList()
 
