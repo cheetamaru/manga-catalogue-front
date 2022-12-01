@@ -1,19 +1,16 @@
-import { FetchResponse } from "ofetch";
-import type { RequestPayload, MethodRequestPayload } from "./types";
+import { $Fetch } from "nitropack";
+import {
+    RequestPayload,
+    MethodRequestPayload,
+    HttpMethod, 
+    IApiService,
+    Response,
+} from "./types";
 
-type ReturnValue<T> = Promise<FetchResponse<T>>
+export class HttpClient implements IApiService {
+    private readonly client: $Fetch;
 
-type ActionMethodSignature = <T>(payload: MethodRequestPayload) => ReturnValue<T>
-
-
-interface ApiSignature {
-    get: ActionMethodSignature
-}
-
-export class HttpClient implements ApiSignature {
-    private readonly client: typeof $fetch;
-
-    constructor(client: typeof $fetch) {
+    constructor(client: $Fetch) {
         this.client = client
     }
 
@@ -21,16 +18,18 @@ export class HttpClient implements ApiSignature {
         method,
         url,
         query,
-        body
-    }: RequestPayload): ReturnValue<T> {
+        body,
+        options
+    }: RequestPayload): Response<T> {
         // try {
             const data = await this.client(url,
                 {
                     method,
                     query,
-                    body
+                    body,
+                    ...options
                 })
-            return data as ReturnValue<T> // TODO: remove as
+            return data as Response<T> // TODO: remove as
         // } catch (error) {
         //     return error.data
         // }
@@ -42,7 +41,7 @@ export class HttpClient implements ApiSignature {
 
     get<T>(payload: MethodRequestPayload) {
         return this.request<T>({
-            method: 'get',
+            method: HttpMethod.GET,
             ...payload
         })
     }

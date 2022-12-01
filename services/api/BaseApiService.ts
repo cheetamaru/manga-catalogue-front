@@ -1,7 +1,13 @@
 import { HttpClient } from "@/services/api/HttpClient"
-import { RequestPayload, MethodRequestPayload } from "./types";
+import {
+    RequestPayload,
+    MethodRequestPayload,
+    HttpMethod,
+    IApiService,
+    Response
+} from "./types";
 
-export class BaseApiService {
+export class BaseApiService implements IApiService {
     protected apiNamespace: string = '';
     private readonly client: HttpClient;
 
@@ -17,22 +23,24 @@ export class BaseApiService {
         return this.apiNamespace ? `${this.apiNamespace}${url}` : url;
     }
 
-    requsest ({
+    requsest<T>({
         url,
         method,
         query,
-        body
-    }: RequestPayload) {
+        body,
+        options
+    }: RequestPayload): Response<T> {
         return this.client[method]({
             url: this.getNamespacedUrl(url),
             query,
-            body
+            body,
+            options
         })
     }
 
-    get(payload: MethodRequestPayload) {
-        return this.requsest({
-            method: 'get',
+    get<T>(payload: MethodRequestPayload) {
+        return this.requsest<T>({
+            method: HttpMethod.GET,
             ...payload
         })
     }
