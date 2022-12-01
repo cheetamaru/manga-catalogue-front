@@ -1,25 +1,28 @@
-type RequestPayload = {
-    method: 'get',
-    url: string,
-    query?: object,
-    body?: object
+import { FetchResponse } from "ofetch";
+import type { RequestPayload, MethodRequestPayload } from "./types";
+
+type ReturnValue<T> = Promise<FetchResponse<T>>
+
+type ActionMethodSignature = <T>(payload: MethodRequestPayload) => ReturnValue<T>
+
+
+interface ApiSignature {
+    get: ActionMethodSignature
 }
 
-type MethodRequestPayload = Omit<RequestPayload, "method">
-
-export class HttpClient {
+export class HttpClient implements ApiSignature {
     private readonly client: typeof $fetch;
 
     constructor(client: typeof $fetch) {
         this.client = client
     }
 
-    async request({
+    async request<T>({
         method,
         url,
         query,
         body
-    }: RequestPayload) {
+    }: RequestPayload): ReturnValue<T> {
         // try {
             const data = await this.client(url,
                 {
@@ -27,7 +30,7 @@ export class HttpClient {
                     query,
                     body
                 })
-            return data
+            return data as ReturnValue<T> // TODO: remove as
         // } catch (error) {
         //     return error.data
         // }
@@ -37,8 +40,8 @@ export class HttpClient {
 
     // }
 
-    get (payload: MethodRequestPayload) {
-        return this.request({
+    get<T>(payload: MethodRequestPayload) {
+        return this.request<T>({
             method: 'get',
             ...payload
         })

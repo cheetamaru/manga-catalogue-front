@@ -1,15 +1,9 @@
-import { HttpClient } from "@/services/api/HttpClient"
+import { BaseApiService } from "./api/BaseApiService"
 
-export class MangaListApiService {
-    private readonly apiNamespace: string;
-    private readonly client: HttpClient;
-
-    constructor (apiNamespace: string, client: HttpClient) {
-        this.apiNamespace = apiNamespace;
-        this.client = client
-    }
+export class MangaListApiService extends BaseApiService {
+    apiNamespace = '/list/'
 
     fetchList () {
-        return this.client.get({url: this.apiNamespace + ''})
+        return this.get({url: ''})
     }
 }

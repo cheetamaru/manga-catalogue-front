@@ -1,9 +1,7 @@
-import { MangaListApiService } from "@/services/MangaListApiService"
+import { useMangaListApi } from "@/services/useMangaListApi"
 
 export const useMangaListApiAdapter = () => {
-    const nuxtApp = useNuxtApp()
-
-    const mangaListApi = new MangaListApiService('/list/', nuxtApp.$httpClient)
+    const { mangaListApi } = useMangaListApi(useNuxtApp().$httpClient)
 
     const fetchList = () => {
         return mangaListApi.fetchList()
