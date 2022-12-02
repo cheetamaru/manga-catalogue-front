@@ -17,7 +17,10 @@
 
     <v-main>
       <v-container>
-        <v-row>
+        <v-row v-if="error">
+          Status: {{status}}
+        </v-row>
+        <v-row v-else>
           <v-col
             v-for="(item, index) of list"
             :key="index"
@@ -55,7 +58,7 @@ import { useMangaListApiAdapter } from '@/composables/useMangaListApiAdapter'
 
 const { fetchList } = useMangaListApiAdapter()
 
-const data = await fetchList()
+const { data, error, status } = await fetchList()
 
-const list = data.results
+const list = error ? [] : data.results
 </script>

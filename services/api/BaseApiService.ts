@@ -4,7 +4,7 @@ import {
     MethodRequestPayload,
     HttpMethod,
     IApiService,
-    Response
+    RequestReturnValue,
 } from "./types";
 
 export class BaseApiService implements IApiService {
@@ -23,13 +23,13 @@ export class BaseApiService implements IApiService {
         return this.apiNamespace ? `${this.apiNamespace}${url}` : url;
     }
 
-    requsest<T>({
+    requsest<T, E>({
         url,
         method,
         query,
         body,
         options
-    }: RequestPayload): Response<T> {
+    }: RequestPayload): RequestReturnValue<T, E> {
         return this.client[method]({
             url: this.getNamespacedUrl(url),
             query,
@@ -38,8 +38,8 @@ export class BaseApiService implements IApiService {
         })
     }
 
-    get<T>(payload: MethodRequestPayload) {
-        return this.requsest<T>({
+    get<T, E>(payload: MethodRequestPayload) {
+        return this.requsest<T, E>({
             method: HttpMethod.GET,
             ...payload
         })
