@@ -4,7 +4,7 @@ import {
     MethodRequestPayload,
     HttpMethod,
     IApiService,
-    RequestReturnValue,
+    Response,
 } from "./types";
 
 export class BaseApiService implements IApiService {
@@ -29,7 +29,7 @@ export class BaseApiService implements IApiService {
         query,
         body,
         options
-    }: RequestPayload): RequestReturnValue<T, E> {
+    }: RequestPayload): Response<T, E> {
         return this.client[method]({
             url: this.getNamespacedUrl(url),
             query,

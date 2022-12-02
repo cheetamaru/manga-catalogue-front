@@ -1,4 +1,4 @@
-import { FetchOptions, FetchError, FetchRequest } from "ofetch";
+import { FetchOptions, FetchError } from "ofetch";
 
 export enum HttpMethod {
     GET = 'get'
@@ -14,16 +14,9 @@ export type RequestPayload = {
 
 export type MethodRequestPayload = Omit<RequestPayload, "method">
 
-export type Response<T, E = FetchError<T>> = {
-    data?: T;
-    status?: number;
-    request?: FetchRequest;
-    error?: E
-}
+export type Response<T, E> = Promise<T | FetchError<E>>
 
-export type RequestReturnValue<T, E> = Promise<Response<T, E>>
-
-export type ApiServiceMethod = <T, E>(payload: MethodRequestPayload) => RequestReturnValue<T, E>
+export type ApiServiceMethod = <T, E>(payload: MethodRequestPayload) => Response<T, E>
 
 export interface IApiService {
     get: ApiServiceMethod

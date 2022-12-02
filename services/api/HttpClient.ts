@@ -5,7 +5,7 @@ import {
     MethodRequestPayload,
     HttpMethod, 
     IApiService,
-    RequestReturnValue,
+    Response,
 } from "./types";
 
 export class HttpClient implements IApiService {
@@ -15,35 +15,20 @@ export class HttpClient implements IApiService {
         this.client = client
     }
 
-    async request<T, E>({
+    request<T, E>({
         method,
         url,
         query,
         body,
         options
-    }: RequestPayload): RequestReturnValue<T, E> {
-        try {
-            const data = await this.client<T>(url,
-                {
-                    method,
-                    query,
-                    body,
-                    ...options
-                })
-            return { data }
-        } catch (e) {
-            if (!(e instanceof FetchError<T>)) {
-                return {
-                    status: -1
-                }
-            }
-
-            return {
-                error: e.data,
-                status: e.status,
-                request: e.request
-            }
-        }
+    }: RequestPayload): Response<T, E> {
+        return this.client<T>(url,
+            {
+                method,
+                query,
+                body,
+                ...options
+            })
     }
 
     // post () {
