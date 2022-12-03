@@ -1,5 +1,5 @@
 import { $Fetch } from "nitropack";
-import { FetchError } from "ofetch";
+import { BaseApiService } from "./BaseApiService";
 import {
     RequestPayload,
     MethodRequestPayload,
@@ -10,6 +10,7 @@ import {
 
 export class HttpClient implements IApiService {
     private readonly client: $Fetch;
+    [prop: string]: any
 
     constructor(client: $Fetch) {
         this.client = client
@@ -49,4 +50,8 @@ export class HttpClient implements IApiService {
     // delete () {
         
     // }
+
+    setSubClient (name: string, subclient: BaseApiService) {
+        this[name] = subclient
+    }
 }

@@ -14,7 +14,9 @@ export type RequestPayload = {
 
 export type MethodRequestPayload = Omit<RequestPayload, "method">
 
-export type Response<T, E> = Promise<T | FetchError<E>>
+export type Error<E> = FetchError<E>
+
+export type Response<T, E> = Promise<T | Error<E>>
 
 export type ApiServiceMethod = <T, E>(payload: MethodRequestPayload) => Response<T, E>
 
