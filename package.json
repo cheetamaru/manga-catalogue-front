@@ -5,10 +5,12 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate-types": "node ./scripts/index.js"
   },
   "devDependencies": {
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "swagger-typescript-api": "^12.0.2"
   },
   "dependencies": {
     "@mdi/font": "^7.0.96",

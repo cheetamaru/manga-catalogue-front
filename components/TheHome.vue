@@ -2,11 +2,10 @@
   <v-app id="inspire">
     <v-app-bar
       app
-      extended
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Manga Catalogue</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -55,10 +54,11 @@
 
 <script lang="ts" setup>
 import { useMangaListApiAdapter } from '@/composables/useMangaListApiAdapter'
+import { MangaTitle } from '~~/src/types/Types';
 
 const { fetchList } = useMangaListApiAdapter()
 
-const { data, error } = useAsyncData(fetchList)
+const { data, error } = useAsyncData<MangaTitle[]>(fetchList)
 
-const list = data.value?.results || []
+const list = data.value || []
 </script>
