@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-app-bar
+      v-if="!pending"
       app
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -16,8 +17,8 @@
 
     <v-main>
       <v-container>
-        <v-row v-if="error">
-          Error: {{error?.data}}
+        <v-row v-if="pending">
+          Loading...
         </v-row>
         <v-row v-else>
           <v-col
@@ -53,12 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useMangaListApiAdapter } from '@/composables/useMangaListApiAdapter'
-import { MangaTitle } from '~~/types/ApiTypes';
+const { fetchMangaList } = useFetchMangaList()
 
-const { fetchList } = useMangaListApiAdapter()
-
-const { data, error } = useAsyncData<MangaTitle[]>(fetchList)
-
-const list = data.value || []
+const { data: list, error, pending } = await fetchMangaList()
 </script>
