@@ -1,4 +1,4 @@
-import { HttpClient } from "@/services/api/HttpClient"
+import { HttpClient } from "@/shared/services/api/HttpClient"
 
 export default defineNuxtPlugin(() => {
     const baseURL = 'http://127.0.0.1:8000/api'

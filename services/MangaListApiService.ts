@@ -1,4 +1,4 @@
-import { BaseApiService } from "./api/BaseApiService"
+import { BaseApiService } from "@/shared/services/api/BaseApiService"
 
 export class MangaListApiService extends BaseApiService {
     apiNamespace = '/list/'

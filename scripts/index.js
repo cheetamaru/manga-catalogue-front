@@ -11,8 +11,8 @@ if (envConfig.error) {
 
 const createParams = (url) => {
   return {
-    name: "Types.ts",
-    output: path.resolve(process.cwd(), "./src/types"),
+    name: "ApiTypes.ts",
+    output: path.resolve(process.cwd(), "./types"),
     url,
     generateClient: false,
     httpClientType: "fetch",

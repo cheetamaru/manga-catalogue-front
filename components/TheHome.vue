@@ -54,7 +54,7 @@
 
 <script lang="ts" setup>
 import { useMangaListApiAdapter } from '@/composables/useMangaListApiAdapter'
-import { MangaTitle } from '~~/src/types/Types';
+import { MangaTitle } from '~~/types/ApiTypes';
 
 const { fetchList } = useMangaListApiAdapter()
 

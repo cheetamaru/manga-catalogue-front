@@ -4,7 +4,7 @@ export enum HttpMethod {
     GET = 'get'
 }
 
-export type RequestPayload = {
+export type ApiRequestPayload = {
     method: HttpMethod,
     url: string,
     query?: FetchOptions["query"],
@@ -12,13 +12,13 @@ export type RequestPayload = {
     options?: Omit<FetchOptions, "method" | "url" | "query" | "params" | "body">
 }
 
-export type MethodRequestPayload = Omit<RequestPayload, "method">
+export type ApiMethodRequestPayload = Omit<ApiRequestPayload, "method">
 
-export type Error<E> = FetchError<E>
+export type ApiError<E> = FetchError<E>
 
-export type Response<T, E> = Promise<T | Error<E>>
+export type ApiResponse<T, E> = Promise<T | ApiError<E>>
 
-export type ApiServiceMethod = <T, E>(payload: MethodRequestPayload) => Response<T, E>
+export type ApiServiceMethod = <T, E>(payload: ApiMethodRequestPayload) => ApiResponse<T, E>
 
 export interface IApiService {
     get: ApiServiceMethod

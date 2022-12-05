@@ -1,10 +1,10 @@
-import { HttpClient } from "@/services/api/HttpClient"
+import { HttpClient } from "@/shared/services/api/HttpClient"
 import {
-    RequestPayload,
-    MethodRequestPayload,
+    ApiRequestPayload,
+    ApiMethodRequestPayload,
     HttpMethod,
     IApiService,
-    Response,
+    ApiResponse,
 } from "./types";
 
 export class BaseApiService implements IApiService {
@@ -29,7 +29,7 @@ export class BaseApiService implements IApiService {
         query,
         body,
         options
-    }: RequestPayload): Response<T, E> {
+    }: ApiRequestPayload): ApiResponse<T, E> {
         return this.client[method]({
             url: this.getNamespacedUrl(url),
             query,
@@ -38,7 +38,7 @@ export class BaseApiService implements IApiService {
         })
     }
 
-    get<T, E>(payload: MethodRequestPayload) {
+    get<T, E>(payload: ApiMethodRequestPayload) {
         return this.requsest<T, E>({
             method: HttpMethod.GET,
             ...payload

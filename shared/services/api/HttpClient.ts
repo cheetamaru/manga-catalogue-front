@@ -1,10 +1,10 @@
 import { $Fetch } from "nitropack";
 import {
-    RequestPayload,
-    MethodRequestPayload,
+    ApiRequestPayload,
+    ApiMethodRequestPayload,
     HttpMethod, 
     IApiService,
-    Response,
+    ApiResponse,
 } from "./types";
 
 export class HttpClient implements IApiService {
@@ -20,7 +20,7 @@ export class HttpClient implements IApiService {
         query,
         body,
         options
-    }: RequestPayload): Response<T, E> {
+    }: ApiRequestPayload): ApiResponse<T, E> {
         return this.client<T>(url,
             {
                 method,
@@ -34,7 +34,7 @@ export class HttpClient implements IApiService {
 
     // }
 
-    get<T, E>(payload: MethodRequestPayload) {
+    get<T, E>(payload: ApiMethodRequestPayload) {
         return this.request<T, E>({
             method: HttpMethod.GET,
             ...payload
