@@ -1,11 +1,7 @@
-import { ApiService } from "~~/services/api/ApiSerice"
-import { useMangaListApi } from "~~/services/useMangaListApi"
+import { useApi } from "~~/services/api/composables"
 
 export default defineNuxtPlugin(() => {
-    const api = new ApiService()
-    const { mangaListApi } = useMangaListApi(useNuxtApp().$httpClient)
-
-    api.setApi('mangaApi', mangaListApi)
+    const { api } = useApi(useNuxtApp().$httpClient)
 
     return {
         provide: {
