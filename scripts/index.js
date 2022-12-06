@@ -14,7 +14,7 @@ const createParams = (url) => {
     name: "ApiTypes.ts",
     output: path.resolve(process.cwd(), "./types"),
     url,
-    generateClient: false,
+    generateClient: true,
     httpClientType: "fetch",
   };
 };
