@@ -14,28 +14,40 @@ export class HttpClient implements IApiService {
         this.client = client
     }
 
-    request<T, E>({
+    request<T>({
         method,
         url,
         query,
         body,
         options
-    }: ApiRequestPayload): ApiResponse<T, E> {
-        return this.client<T>(url,
-            {
-                method,
-                query,
-                body,
-                ...options
-            })
+    }: ApiRequestPayload): ApiResponse<T> {
+        // try {
+            return this.client<T>(url,
+                {
+                    method,
+                    query,
+                    body,
+                    ...options
+                })
+                // .then((response): response is T => {
+                //     return response
+                // })
+                // .catch((e): e is ApiError<E> => {
+                //     return e
+                // })
+            // return response
+        // } catch (e) {
+        //     return e as ApiError<E>
+        // }
+        
     }
 
     // post () {
 
     // }
 
-    get<T, E>(payload: ApiMethodRequestPayload) {
-        return this.request<T, E>({
+    get<T>(payload: ApiMethodRequestPayload) {
+        return this.request<T>({
             method: HttpMethod.GET,
             ...payload
         })

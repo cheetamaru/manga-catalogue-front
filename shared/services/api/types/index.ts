@@ -16,9 +16,9 @@ export type ApiMethodRequestPayload = Omit<ApiRequestPayload, "method">
 
 export type ApiError<E> = FetchError<E>
 
-export type ApiResponse<T, E> = Promise<T | ApiError<E>>
+export type ApiResponse<T> = Promise<T>
 
-export type ApiServiceMethod = <T, E>(payload: ApiMethodRequestPayload) => ApiResponse<T, E>
+export type ApiServiceMethod = <T>(payload: ApiMethodRequestPayload) => ApiResponse<T>
 
 export interface IApiService {
     get: ApiServiceMethod

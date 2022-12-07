@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar
+    <!-- <v-app-bar
       v-if="!pending"
       app
     >
@@ -13,7 +13,7 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
 
     <v-main>
       <v-container>
@@ -28,6 +28,7 @@
           >
             <v-card>
               <v-img
+                v-if="item?.firstCoverImage"
                 :src="item.firstCoverImage"
                 height="500px"
                 cover

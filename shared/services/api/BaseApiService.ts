@@ -23,13 +23,13 @@ export class BaseApiService implements IApiService {
         return this.apiNamespace ? `${this.apiNamespace}${url}` : url;
     }
 
-    requsest<T, E>({
+    requsest<T>({
         url,
         method,
         query,
         body,
         options
-    }: ApiRequestPayload): ApiResponse<T, E> {
+    }: ApiRequestPayload): ApiResponse<T> {
         return this.client[method]({
             url: this.getNamespacedUrl(url),
             query,
@@ -38,8 +38,8 @@ export class BaseApiService implements IApiService {
         })
     }
 
-    get<T, E>(payload: ApiMethodRequestPayload) {
-        return this.requsest<T, E>({
+    get<T>(payload: ApiMethodRequestPayload) {
+        return this.requsest<T>({
             method: HttpMethod.GET,
             ...payload
         })
