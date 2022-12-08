@@ -17,6 +17,7 @@
 
     <v-main>
       <v-container>
+        <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
         <v-row v-if="pending">
           Loading...
         </v-row>
@@ -57,5 +58,24 @@
 <script lang="ts" setup>
 const { fetchMangaList } = useFetchMangaList()
 
-const { data: list, error, pending } = await fetchMangaList()
+const search = ref('')
+
+watch(search, (val) => {
+  fetch()
+})
+
+const list = ref<any>([])
+const pending = ref(false)
+const error = ref<any>()
+
+const fetch = async () => {
+  const { data, pending: internalPending, error: internalError } = await fetchMangaList({ search: search.value || undefined })
+
+  list.value = data
+  pending.value = internalPending
+  error.value = internalError
+}
+
+fetch()
+
 </script>
