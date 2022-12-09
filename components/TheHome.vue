@@ -15,9 +15,21 @@
       </v-btn>
     </v-app-bar> -->
 
+    <v-navigation-drawer :expand-on-hover="true" :location="'right'" permanent>
+      <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
+      <v-select
+        v-model="status"
+        label="Select"
+        :items="statusOptions"
+        clearable
+      ></v-select>
+    </v-navigation-drawer>
+
     <v-main>
       <v-container>
-        <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
+        <v-alert v-if="error">
+          {{ error }}
+        </v-alert>
         <v-row v-if="pending">
           Loading...
         </v-row>
@@ -27,12 +39,11 @@
             :key="index"
             cols="3"
           >
-            <v-card>
+            <v-card max-height="500px">
               <v-img
                 v-if="item?.firstCoverImage"
                 :src="item.firstCoverImage"
-                height="500px"
-                cover
+                height="300px"
               >
             </v-img>
 
@@ -55,27 +66,16 @@
   </v-app>
 </template>
 
-<script lang="ts" setup>
-const { fetchMangaList } = useFetchMangaList()
+<script setup lang="ts">
+const {
+  initPage,
+  status,
+  search,
+  list,
+  pending,
+  error,
+  statusOptions
+} = useMangaListPage()
 
-const search = ref('')
-
-watch(search, (val) => {
-  fetch()
-})
-
-const list = ref<any>([])
-const pending = ref(false)
-const error = ref<any>()
-
-const fetch = async () => {
-  const { data, pending: internalPending, error: internalError } = await fetchMangaList({ search: search.value || undefined })
-
-  list.value = data
-  pending.value = internalPending
-  error.value = internalError
-}
-
-fetch()
-
+initPage()
 </script>
