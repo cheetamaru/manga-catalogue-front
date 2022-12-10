@@ -39,7 +39,7 @@
             :key="index"
             cols="3"
           >
-            <v-card max-height="500px">
+            <v-card max-height="500px" hover elevation="2" ripple :to="{ path: `/manga-info/${item.id}` }">
               <v-img
                 v-if="item?.firstCoverImage"
                 :src="item.firstCoverImage"
