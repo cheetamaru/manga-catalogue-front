@@ -14,6 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
               mdi,
             },
         },
+        ssr: true,
     })
 
     nuxtApp.vueApp.use(vuetify)

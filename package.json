@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "nuxt": "3.0.0",
-    "swagger-typescript-api": "^12.0.2"
+    "swagger-typescript-api": "^12.0.2",
+    "vite-plugin-vuetify": "^1.0.1"
   },
   "dependencies": {
     "@mdi/font": "^7.0.96",
