@@ -30,10 +30,12 @@
         <v-alert v-if="error">
           {{ error }}
         </v-alert>
+
         <v-row v-if="pending">
           Loading...
+          <v-progress-circular indeterminate :size="60" :width="10" class="v-progress-circular--visible" />
         </v-row>
-        <v-row v-else>
+        <v-row>
           <v-col
             v-for="(item, index) of list"
             :key="index"
@@ -74,7 +76,8 @@ const {
   list,
   pending,
   error,
-  statusOptions
+  statusOptions,
+  refresh
 } = useMangaListPage()
 
 initPage()

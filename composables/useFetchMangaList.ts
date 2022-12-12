@@ -3,13 +3,14 @@ import { FetchListQuery } from "~~/types/test"
 export const useFetchMangaList = () => {
     const { fetchList } = useMangaListApiAdapter()
 
-    const fetchMangaList = async (query?: FetchListQuery) => {
-        const response = await fetchList(query)
+    const fetchMangaList = (query?: FetchListQuery) => {
+        return fetchList(query)
 
-        return { 
-            ...response,
-            data: response.data?.results,
-        }
+        // return { 
+        //     ...response,
+        //     pending: response.pending,
+        //     data: response.data,
+        // }
     }
     
     return {

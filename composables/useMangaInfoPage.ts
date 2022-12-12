@@ -5,21 +5,22 @@ export const useMangaInfoPage = () => {
     const { fetchMangaItem } = useFetchMangaItem()
 
     const mangaTitle = ref<MangaTitle | null>()
-    const pending = ref(false)
+    let pending = ref(false)
     const error = ref<any>()
 
-    const fetch = async (id: string) => {
-        const { data, pending: internalPending, error: internalError } = await fetchMangaItem(id)
+    const fetch = (id: string) => {
+        const { data, pending: internalPending, error: internalError } = fetchMangaItem(id)
 
-        mangaTitle.value = data
-        pending.value = internalPending
-        error.value = internalError
+        mangaTitle.value = data.value
+        pending.value = internalPending.value
+        error.value = internalError.value
     }
 
     const fetchByRoute = () => {
         if (Array.isArray(route.params.id)) {
             return
         }
+
         fetch(route.params.id)
     }
 

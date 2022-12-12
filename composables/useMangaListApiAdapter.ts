@@ -1,25 +1,33 @@
 import { AsyncDataExecuteOptions } from "nuxt/dist/app/composables/asyncData"
 import { MangaTitle } from "~~/types/ApiTypes";
 import { FetchListQuery, TestError, TestType } from "~~/types/test"
+import { Ref } from "vue"
 
 type IMangaApi = {
-    fetchList: (query?: FetchListQuery) => Promise<{ data: TestType | null; error: TestError | null; pending: boolean; refresh: (opts?: AsyncDataExecuteOptions | undefined) => Promise<void>;}>
-    fetchItem: (id: string) => Promise<{ data: MangaTitle | null; error: TestError | null; pending: boolean; refresh: (opts?: AsyncDataExecuteOptions | undefined) => Promise<void>;}>
+    fetchList: (query?: FetchListQuery) => { data: Ref<TestType | null>; error: Ref<TestError | null>; pending: Ref<boolean>; refresh: (opts?: AsyncDataExecuteOptions | undefined) => Promise<void>;};
+    fetchItem: (id: string) => { data: Ref<MangaTitle | null>; error: Ref<TestError | null>; pending: Ref<boolean>; refresh: (opts?: AsyncDataExecuteOptions | undefined) => Promise<void>;};
 }
 
 export const useMangaListApiAdapter = (): IMangaApi => {
     const mangaListApi  = useNuxtApp().$api.mangaListApi
 
-    const fetchList = async (query?: FetchListQuery) => {
-        const { data, error, pending, refresh } = await useAsyncData<TestType, TestError>(() => mangaListApi.fetchList(query))
+    const fetchList = (query?: FetchListQuery) => {
+        const { data, error, pending, refresh } = useAsyncData<TestType, TestError>('abc', () => mangaListApi.fetchList(query), {
+            lazy: true,
+            default: () => ({
+                results: []
+            })
+        })
 
-        return { data: data.value, error: error.value, pending: pending.value, refresh }
+        return { data, error, pending, refresh }
     }
 
-    const fetchItem = async (id: string) => {
-        const { data, error, pending, refresh } = await useAsyncData<MangaTitle, TestError>(() => mangaListApi.fetchItem(id))
+    const fetchItem = (id: string) => {
+        const { data, error, pending, refresh } = useAsyncData<MangaTitle, TestError>('def', () => mangaListApi.fetchItem(id), {
+            lazy: true,
+        })
 
-        return { data: data.value, error: error.value, pending: pending.value, refresh }
+        return { data, error, pending, refresh }
     }
 
     return {

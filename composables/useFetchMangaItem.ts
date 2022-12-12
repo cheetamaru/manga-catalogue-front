@@ -1,13 +1,13 @@
 export const useFetchMangaItem = () => {
     const { fetchItem } = useMangaListApiAdapter()
 
-    const fetchMangaItem = async (id: string) => {
-        const response = await fetchItem(id)
+    const fetchMangaItem = (id: string) => {
+        return fetchItem(id)
 
-        return { 
-            ...response,
-            data: response.data,
-        }
+        // return { 
+        //     ...response,
+        //     data: response.data,
+        // }
     }
     
     return {

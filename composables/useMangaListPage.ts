@@ -6,29 +6,34 @@ export const useMangaListPage = () => {
     const search = ref('')
     const status = ref()
 
-    const watchChanges = computed(() => search.value + status.value)
+    const watchChanges = computed(() => [search.value, status.value])
 
     watch(watchChanges, () => {
         fetch()
     })
 
-    const list = ref<any>([])
-    const pending = ref(false)
+    let data = ref<any>([])
+    let pending = ref(false)
     const error = ref<any>()
+    const refresh = ref()
 
-    const fetch = async () => {
-        const { data, pending: internalPending, error: internalError } = await fetchMangaList({
+    const list = computed(() => data.value?.results || [])
+
+    const fetch = () => {
+        const { data: intData, pending: internalPending, error: internalError, refresh: inter } = fetchMangaList({
             search: search.value || undefined,
             status: status.value
         })
 
-        list.value = data
-        pending.value = internalPending
-        error.value = internalError
+
+        data.value = intData.value
+        pending.value = internalPending.value
+        error.value = internalError.value
+        refresh.value = inter
     }
 
     const initPage = () => {
-        fetch()
+        return fetch()
     }
 
     return {
@@ -39,6 +44,7 @@ export const useMangaListPage = () => {
         list,
         pending,
         error,
-        statusOptions
+        statusOptions,
+        refresh,
     }
 }
