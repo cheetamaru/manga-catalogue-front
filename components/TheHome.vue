@@ -15,7 +15,7 @@
       </v-btn>
     </v-app-bar> -->
 
-    <v-navigation-drawer :expand-on-hover="true" :location="'right'" permanent>
+    <v-navigation-drawer :location="'right'" permanent>
       <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
       <v-select
         v-model="status"
@@ -30,11 +30,6 @@
         <v-alert v-if="error">
           {{ error }}
         </v-alert>
-
-        <v-row v-if="pending">
-          Loading...
-          <v-progress-circular indeterminate :size="60" :width="10" class="v-progress-circular--visible" />
-        </v-row>
         <v-row>
           <v-col
             v-for="(item, index) of list"
@@ -45,6 +40,7 @@
               <v-img
                 v-if="item?.firstCoverImage"
                 :src="item.firstCoverImage"
+                :lazy-src="item.firstCoverImage"
                 height="300px"
               >
             </v-img>
@@ -70,15 +66,10 @@
 
 <script setup lang="ts">
 const {
-  initPage,
   status,
   search,
   list,
-  pending,
   error,
   statusOptions,
-  refresh
 } = useMangaListPage()
-
-initPage()
 </script>

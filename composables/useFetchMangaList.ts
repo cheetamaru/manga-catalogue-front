@@ -1,16 +1,11 @@
 import { FetchListQuery } from "~~/types/test"
+import { ComputedRef } from "vue"
 
 export const useFetchMangaList = () => {
     const { fetchList } = useMangaListApiAdapter()
 
-    const fetchMangaList = (query?: FetchListQuery) => {
+    const fetchMangaList = (query?: ComputedRef<FetchListQuery>) => {
         return fetchList(query)
-
-        // return { 
-        //     ...response,
-        //     pending: response.pending,
-        //     data: response.data,
-        // }
     }
     
     return {

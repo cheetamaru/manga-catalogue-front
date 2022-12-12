@@ -57,9 +57,5 @@ const {
     mangaTitle,
     pending,
     error,
-    fetchByRoute,
-    initPage
 } = useMangaInfoPage()
-
-initPage()
 </script>
