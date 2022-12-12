@@ -72,4 +72,6 @@ const {
   error,
   statusOptions,
 } = useMangaListPage()
+
+preloadRouteComponents('/manga-info/[id]')
 </script>

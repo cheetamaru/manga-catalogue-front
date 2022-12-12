@@ -20,7 +20,9 @@
               cols="12"
               sm="8"
             >
+            <v-progress-circular v-if="pending" indeterminate :size="60" :width="10" class="v-progress-circular--visible" />
               <v-sheet
+                v-else
                 min-height="70vh"
                 rounded="lg"
               > 
@@ -29,6 +31,7 @@
                 <v-img
                     v-if="mangaTitle?.firstCoverImage"
                     :src="mangaTitle.firstCoverImage"
+                    :lazy-src="mangaTitle.firstCoverImage"
                     height="500px"
                 ></v-img>
 
