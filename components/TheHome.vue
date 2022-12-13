@@ -23,6 +23,12 @@
         :items="statusOptions"
         clearable
       ></v-select>
+      <v-select
+        v-model="ordering"
+        label="Sort"
+        :items="orderingOptions"
+        clearable
+      ></v-select>
     </v-navigation-drawer>
 
     <v-main>
@@ -54,11 +60,13 @@
               </v-card-subtitle>
               
               <v-card-text>
-                {{item && item.description}}
+                <span>Chapters: {{ item?.chapterCount }}</span> 
+                <span>Volumes: {{ item?.volumeCount }}</span> 
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
+        <v-pagination v-model="page" :length="totalPages" density="comfortable" rounded />
       </v-container>
     </v-main>
   </v-app>
@@ -71,6 +79,10 @@ const {
   list,
   error,
   statusOptions,
+  page,
+  totalPages,
+  ordering,
+  orderingOptions,
 } = useMangaListPage()
 
 preloadRouteComponents('/manga-info/[id]')
