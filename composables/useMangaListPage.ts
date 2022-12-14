@@ -1,12 +1,15 @@
 export const useMangaListPage = () => {
-    const { fetchMangaList } = useFetchMangaList()
+    const router = useRouter()
+    const route = useRoute()
 
+    const { fetchMangaList } = useFetchMangaList()
+    
     const statusOptions = ['finished', 'ongoing', 'hiatus', 'canceled', 'notstarted']
 
-    const search = ref('')
-    const status = ref()
-    const page = ref(1)
-    const ordering = ref()
+    const search = ref(route.query.search ? String(route.query.search) : '')
+    const status = ref(route.query.status ? String(route.query.status) : undefined)
+    const page = ref<number | undefined>(route.query.page ? Number(route.query.page) : 1)
+    const ordering = ref(route.query.ordering ? String(route.query.ordering) : undefined)
 
     const orderingMap = {
         stratDateUp: 'startDate',
@@ -22,6 +25,27 @@ export const useMangaListPage = () => {
             page: page.value,
             ordering: ordering.value
         }
+    })
+
+    watch(query, (val) => {
+        const newQuery = {
+            page: val.page === 1 ? undefined : Number(val.page),
+            status: val.status || undefined,
+            ordering: val.ordering || undefined,
+            search: val.search || undefined
+        }
+
+        router.replace({ query: newQuery })
+    })
+
+    const paramsToResetPageNumber = computed(() => [
+        search.value,
+        ordering.value,
+        status.value
+    ])
+
+    watch(paramsToResetPageNumber, () => {
+        page.value = 1
     })
 
     const { data, pending, error, refresh } = fetchMangaList(query)
