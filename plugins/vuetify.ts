@@ -4,18 +4,18 @@ import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const vuetify = createVuetify({
-        components,
-        directives,
-        icons: {
-            defaultSet: 'mdi',
-            aliases,
-            sets: {
-              mdi,
-            },
-        },
-        ssr: true,
-    })
+  const vuetify = createVuetify({
+    components,
+    directives,
+    icons: {
+      defaultSet: 'mdi',
+      aliases,
+      sets: {
+        mdi,
+      },
+    },
+    ssr: true,
+  })
 
-    nuxtApp.vueApp.use(vuetify)
+  nuxtApp.vueApp.use(vuetify)
 })

@@ -1,4 +1,4 @@
-import { FetchOptions, FetchError } from "ofetch";
+import { FetchOptions, FetchError } from 'ofetch';
 
 export enum HttpMethod {
     GET = 'get'
@@ -7,12 +7,12 @@ export enum HttpMethod {
 export type ApiRequestPayload = {
     method: HttpMethod,
     url: string,
-    query?: FetchOptions["query"],
+    query?: FetchOptions['query'],
     body?: FetchOptions['body'],
-    options?: Omit<FetchOptions, "method" | "url" | "query" | "params" | "body">
+    options?: Omit<FetchOptions, 'method' | 'url' | 'query' | 'params' | 'body'>
 }
 
-export type ApiMethodRequestPayload = Omit<ApiRequestPayload, "method">
+export type ApiMethodRequestPayload = Omit<ApiRequestPayload, 'method'>
 
 export type ApiError<E> = FetchError<E>
 

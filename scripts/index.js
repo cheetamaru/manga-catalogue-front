@@ -1,21 +1,21 @@
-const path = require("path");
-const { generateApi } = require("swagger-typescript-api");
-const { config } = require("dotenv");
+const path = require('path');
+const { generateApi } = require('swagger-typescript-api');
+const { config } = require('dotenv');
 
-const ENV_KEY = "URL_SWAGGER_JSON_TYPES";
-const envConfig = config({ path: ".env" });
+const ENV_KEY = 'URL_SWAGGER_JSON_TYPES';
+const envConfig = config({ path: '.env' });
 
 if (envConfig.error) {
-  throw new Error("Can`t parse .env config");
+  throw new Error('Can`t parse .env config');
 }
 
 const createParams = (url) => {
   return {
-    name: "ApiTypes.ts",
-    output: path.resolve(process.cwd(), "./types"),
+    name: 'ApiTypes.ts',
+    output: path.resolve(process.cwd(), './types'),
     url,
     generateClient: true,
-    httpClientType: "fetch",
+    httpClientType: 'fetch',
   };
 };
 
@@ -24,6 +24,7 @@ const main = () => {
   if (!url) {
     throw new Error(`Please add ${ENV_KEY} variable to env`);
   }
+
   return generateApi(createParams(url));
 };
 

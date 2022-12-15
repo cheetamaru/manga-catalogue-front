@@ -3,4 +3,3 @@
       <TheHome />
     </div>
 </template>
-  

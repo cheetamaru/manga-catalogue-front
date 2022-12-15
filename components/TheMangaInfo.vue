@@ -57,8 +57,8 @@
 
 <script setup lang="ts">
 const {
-    mangaTitle,
-    pending,
-    error,
+  mangaTitle,
+  pending,
+  error,
 } = useMangaInfoPage()
 </script>

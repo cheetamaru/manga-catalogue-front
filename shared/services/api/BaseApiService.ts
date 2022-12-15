@@ -1,47 +1,47 @@
-import { HttpClient } from "@/shared/services/api/HttpClient"
+import { HttpClient } from '@/shared/services/api/HttpClient'
 import {
-    ApiRequestPayload,
-    ApiMethodRequestPayload,
-    HttpMethod,
-    IApiService,
-    ApiResponse,
-} from "./types";
+  ApiRequestPayload,
+  ApiMethodRequestPayload,
+  HttpMethod,
+  IApiService,
+  ApiResponse,
+} from './types';
 
 export class BaseApiService implements IApiService {
-    protected apiNamespace: string = '';
-    private readonly client: HttpClient;
+  protected apiNamespace: string = '';
+  private readonly client: HttpClient;
 
-    constructor (client: HttpClient) {
-        this.client = client
+  constructor (client: HttpClient) {
+    this.client = client
+  }
+
+  private getNamespacedUrl (url: string) {
+    if (!url) {
+      return this.apiNamespace;
     }
 
-    private getNamespacedUrl (url: string) {
-        if (!url) {
-          return this.apiNamespace;
-        }
+    return this.apiNamespace ? `${this.apiNamespace}${url}` : url;
+  }
 
-        return this.apiNamespace ? `${this.apiNamespace}${url}` : url;
-    }
+  requsest<T>({
+    url,
+    method,
+    query,
+    body,
+    options,
+  }: ApiRequestPayload): ApiResponse<T> {
+    return this.client[method]({
+      url: this.getNamespacedUrl(url),
+      query,
+      body,
+      options,
+    })
+  }
 
-    requsest<T>({
-        url,
-        method,
-        query,
-        body,
-        options
-    }: ApiRequestPayload): ApiResponse<T> {
-        return this.client[method]({
-            url: this.getNamespacedUrl(url),
-            query,
-            body,
-            options
-        })
-    }
-
-    get<T>(payload: ApiMethodRequestPayload) {
-        return this.requsest<T>({
-            method: HttpMethod.GET,
-            ...payload
-        })
-    }
+  get<T>(payload: ApiMethodRequestPayload) {
+    return this.requsest<T>({
+      method: HttpMethod.GET,
+      ...payload,
+    })
+  }
 }

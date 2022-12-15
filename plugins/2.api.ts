@@ -1,9 +1,9 @@
 export default defineNuxtPlugin(() => {
-    const { api } = useApi(useNuxtApp().$httpClient)
+  const { api } = useApi(useNuxtApp().$httpClient)
 
-    return {
-        provide: {
-            api,
-        }
-    }
+  return {
+    provide: {
+      api,
+    },
+  }
 })
