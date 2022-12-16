@@ -52,7 +52,7 @@ export const useMangaListPage = () => {
 
   const list = computed(() => data.value?.results || [])
   const total = computed(() => data.value?.count || 0)
-  const totalPages = computed(() => Math.ceil(total.value / 4))
+  const totalPages = computed(() => Math.ceil(total.value / 10))
 
   return {
     fetch,

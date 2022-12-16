@@ -5,20 +5,29 @@
           <v-row>
             <v-col
               cols="12"
-              sm="2"
+              sm="3"
             >
               <v-sheet
-                rounded="lg"
                 min-height="268"
               >
-                <div>Error: {{error}}</div>
-                <div>Pending: {{pending}}</div>
+                <div class="text-h4">{{mangaTitle?.title}}</div>
+                <div height="500px">
+                  <div v-if="pending">
+                    Loading
+                  </div>
+                  <v-img
+                    v-else-if="mangaTitle?.firstCoverImage"
+                    :src="mangaTitle?.firstCoverImage"
+                    :lazy-src="mangaTitle?.firstCoverImage"
+                    width="100%"
+                />
+                </div>
               </v-sheet>
             </v-col>
   
             <v-col
               cols="12"
-              sm="8"
+              sm="9"
             >
             <v-progress-circular v-if="pending" indeterminate :size="60" :width="10" class="v-progress-circular--visible" />
               <v-sheet
@@ -26,27 +35,38 @@
                 min-height="70vh"
                 rounded="lg"
               > 
-                <div>{{mangaTitle?.title}}</div>
-                <div>{{mangaTitle?.status}}</div>
-                <v-img
-                    v-if="mangaTitle?.firstCoverImage"
-                    :src="mangaTitle.firstCoverImage"
-                    :lazy-src="mangaTitle.firstCoverImage"
-                    height="500px"
-                ></v-img>
+                <div class="text-h5">Description</div>
+                <v-divider />
+                <div>{{mangaTitle?.description}}</div>
 
-              </v-sheet>
-            </v-col>
-  
-            <v-col
-              cols="12"
-              sm="2"
-            >
-              <v-sheet
-                rounded="lg"
-                min-height="268"
-              >
-                <!--  -->
+                <v-divider :thickness="4" />
+
+                <div>
+                  <div class="text-h5">Information</div>
+                  <v-divider />
+                  <div>
+                    <strong>Status</strong>: {{ mangaTitle?.status }}
+                  </div>
+                  <div>
+                    <strong>Chapters</strong>: {{ mangaTitle?.chapterCount }}
+                  </div>
+                  <div>
+                    <strong>Volumes</strong>: {{ mangaTitle?.volumeCount }}
+                  </div>
+                  <div>
+                    <strong>Authors</strong>: {{ mangaTitle?.authors?.map((el) => `${el.firstName} ${el.surname}`).join(',') }}
+                  </div>
+                  <div>
+                    <strong>Start Date</strong>: {{ mangaTitle?.startDate }}
+                  </div>
+                  <div>
+                    <strong>End Date</strong>: {{ mangaTitle?.endDate || '-' }}
+                  </div>
+                  <div>
+                    <strong>Genres</strong>: {{ mangaTitle?.genres?.map((el) => `${el.name}`).join(', ') }}
+                  </div>
+                </div>
+
               </v-sheet>
             </v-col>
           </v-row>
