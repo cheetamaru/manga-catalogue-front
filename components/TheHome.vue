@@ -1,21 +1,26 @@
 <template>
   <v-app id="inspire">
     <!-- <v-app-bar
-      v-if="!pending"
       app
+      floating
+      :model-value="true"
+      style="width: 100%"
+      absolute
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-btn icon>
+        <v-icon>mdi-alpha-m-box</v-icon>
+      </v-btn>
 
       <v-toolbar-title>Manga Catalogue</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
+      <v-btn icon @click="sidebar = !sidebar" :active="sidebar">
+        <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar> -->
 
-    <v-navigation-drawer :location="'right'" permanent>
+    <!-- <v-navigation-drawer :location="'right'" :model-value="sidebar" permanent app>
       <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
       <v-select
         v-model="status"
@@ -29,12 +34,15 @@
         :items="orderingOptions"
         clearable
       ></v-select>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <v-main>
       <v-container>
         <v-alert v-if="error">
           {{ error }}
+        </v-alert>
+        <v-alert v-else-if="!list.length">
+          Search is empty!
         </v-alert>
         <v-row>
           <v-col
@@ -83,7 +91,10 @@ const {
   totalPages,
   ordering,
   orderingOptions,
+  pending,
 } = useMangaListPage()
+
+const sidebar = ref(false)
 
 preloadRouteComponents('/manga-info/[id]')
 </script>

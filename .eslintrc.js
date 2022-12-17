@@ -32,7 +32,7 @@ module.exports = {
       { blankLine: 'always', prev: 'let', next: 'return' },
     ],
     'vue/multi-word-component-names': ['error', {
-      'ignores': ['index', '[id]'],
+      'ignores': ['index', '[id]', 'default'],
     }],
   },
 }

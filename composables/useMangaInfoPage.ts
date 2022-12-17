@@ -14,16 +14,14 @@ export const useMangaInfoPage = () => {
 
   const mangaTitle = ref<MangaTitle>()
 
-  const { data, pending, error } = fetchMangaItem(mangaTitleId.value)
+  const { data, pending, error, refresh } = fetchMangaItem(mangaTitleId.value)
 
   watch(data, (val) => {
     if (val) {
       mangaTitle.value = val
     }
-  })
-
-  onUnmounted(() => {
-    mangaTitle.value = undefined
+  }, {
+    immediate: true,
   })
 
   return {
