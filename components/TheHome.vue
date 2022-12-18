@@ -5,7 +5,14 @@
       <v-list>
         <v-list-item :key="123">
           <v-form>
-            <v-text-field v-model="search" variant="outlined" placeholder="Search" clearable></v-text-field>
+            <v-text-field
+              :model-value="search"
+              @update:model-value="onSearch"
+              variant="outlined"
+              placeholder="Search"
+              clearable
+            >
+            </v-text-field>
             <v-select
               v-model="status"
               label="Select"
@@ -83,6 +90,7 @@ const {
   ordering,
   orderingOptions,
   loading,
+  onSearch,
 } = useMangaListPage()
 
 const sidebar = useState<boolean>('sidebar')

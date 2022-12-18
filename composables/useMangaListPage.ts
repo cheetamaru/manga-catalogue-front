@@ -87,6 +87,16 @@ export const useMangaListPage = () => {
     debouncedSetLoading(val)
   })
 
+  const updateSearch = (val: string) => {
+    search.value = val
+  }
+  
+  const debouncedUpdateSearch = debounce(updateSearch, 100)
+  
+  const onSearch = (val) => {
+    debouncedUpdateSearch(val)
+  }  
+
   return {
     fetch,
     status,
@@ -101,5 +111,6 @@ export const useMangaListPage = () => {
     ordering,
     orderingOptions,
     loading,
+    onSearch,
   }
 }
