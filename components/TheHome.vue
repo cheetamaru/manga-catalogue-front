@@ -29,7 +29,7 @@
         <v-alert v-if="error">
           {{ error }}
         </v-alert>
-        <v-alert v-else-if="pending">
+        <v-alert v-else-if="loading">
           Loading...
         </v-alert>
         <v-alert v-else-if="!list.length">
@@ -65,7 +65,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-pagination v-model="page" :length="totalPages" density="comfortable" rounded />
+        <v-pagination v-if="list.length" v-model="page" :length="totalPages" density="comfortable" rounded />
       </v-container>
     </v-main>
   </v-app>
@@ -82,7 +82,7 @@ const {
   totalPages,
   ordering,
   orderingOptions,
-  pending,
+  loading,
 } = useMangaListPage()
 
 const sidebar = useState<boolean>('sidebar')

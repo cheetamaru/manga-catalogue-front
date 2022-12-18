@@ -1,3 +1,5 @@
+import debounce from 'lodash.debounce'
+
 export const useMangaListPage = () => {
   const router = useRouter()
   const route = useRoute()
@@ -73,6 +75,18 @@ export const useMangaListPage = () => {
   const total = computed(() => data.value?.count || 0)
   const totalPages = computed(() => Math.ceil(total.value / 10))
 
+  const loading = ref(false)
+
+  const setLoading = (val: boolean) => {
+    loading.value = val
+  }
+
+  const debouncedSetLoading = debounce(setLoading, 300)
+
+  watch(pending, (val) => {
+    debouncedSetLoading(val)
+  })
+
   return {
     fetch,
     status,
@@ -86,5 +100,6 @@ export const useMangaListPage = () => {
     totalPages,
     ordering,
     orderingOptions,
+    loading,
   }
 }
