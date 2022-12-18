@@ -1,40 +1,28 @@
 <template>
   <v-app id="inspire">
-    <!-- <v-app-bar
-      app
-      floating
-      :model-value="true"
-      style="width: 100%"
-      absolute
-    >
-      <v-btn icon>
-        <v-icon>mdi-alpha-m-box</v-icon>
-      </v-btn>
-
-      <v-toolbar-title>Manga Catalogue</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="sidebar = !sidebar" :active="sidebar">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-app-bar> -->
-
-    <!-- <v-navigation-drawer :location="'right'" :model-value="sidebar" permanent app>
-      <v-text-field v-model="search" variant="outlined" placeholder="Search"/>
-      <v-select
-        v-model="status"
-        label="Select"
-        :items="statusOptions"
-        clearable
-      ></v-select>
-      <v-select
-        v-model="ordering"
-        label="Sort"
-        :items="orderingOptions"
-        clearable
-      ></v-select>
-    </v-navigation-drawer> -->
+    <client-only>
+      <v-navigation-drawer :location="'right'" :model-value="sidebar" permanent app>
+      <v-list>
+        <v-list-item :key="123">
+          <v-form>
+            <v-text-field v-model="search" variant="outlined" placeholder="Search" clearable></v-text-field>
+            <v-select
+              v-model="status"
+              label="Select"
+              :items="statusOptions"
+              clearable
+            ></v-select>
+            <v-select
+              v-model="ordering"
+              label="Sort"
+              :items="orderingOptions"
+              clearable
+            ></v-select>
+          </v-form>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    </client-only>
 
     <v-main>
       <v-container>
@@ -97,7 +85,13 @@ const {
   pending,
 } = useMangaListPage()
 
-const sidebar = ref(false)
+const sidebar = useState<boolean>('sidebar')
+const showSearch = useState<boolean>('showSearch')
+showSearch.value = true
+
+onUnmounted(() => {
+  showSearch.value = false
+})
 
 preloadRouteComponents('/manga-info/[id]')
 </script>

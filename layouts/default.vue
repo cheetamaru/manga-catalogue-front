@@ -13,13 +13,22 @@
             <v-toolbar-title>Manga Catalogue</v-toolbar-title>
 
             <v-spacer></v-spacer>
-
-            <!-- <v-btn icon @click="sidebar = !sidebar" :active="sidebar">
+            <v-btn
+                v-show="showSearch"
+                icon 
+                @click="sidebar = !sidebar"
+                :active="sidebar"
+            >
                 <v-icon>mdi-magnify</v-icon>
-            </v-btn> -->
+            </v-btn>
         </v-app-bar>
         <div style="height: 64px"></div>
         <slot />
         </v-app>
     </div>
 </template>
+
+<script setup lang="ts">
+const sidebar = useState('sidebar', () => false)
+const showSearch = useState('showSearch', () => false)
+</script>

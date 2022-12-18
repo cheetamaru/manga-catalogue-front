@@ -4,7 +4,26 @@ export const useMangaListPage = () => {
 
   const { fetchMangaList } = useFetchMangaList()
     
-  const statusOptions = ['finished', 'ongoing', 'hiatus', 'canceled', 'notstarted']
+  const statusOptions = [{
+    title: 'finished',
+    value: 'finished',
+  },
+  {
+    title: 'ongoing',
+    value: 'ongoing',
+  },
+  {
+    title: 'hiatus',
+    value: 'hiatus',
+  },
+  {
+    title: 'canceled',
+    value: 'canceled',
+  },
+  {
+    title: 'notstarted',
+    value: 'notstarted',
+  }]
 
   const search = ref(route.query.search ? String(route.query.search) : '')
   const status = ref(route.query.status ? String(route.query.status) : undefined)
