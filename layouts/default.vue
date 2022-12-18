@@ -6,7 +6,7 @@
             :model-value="true"
             style="width: 100%"
             >
-            <v-btn icon>
+            <v-btn icon @click="$router.push('/')">
                 <v-icon>mdi-alpha-m-box</v-icon>
             </v-btn>
 
@@ -18,7 +18,7 @@
                 <v-icon>mdi-magnify</v-icon>
             </v-btn> -->
         </v-app-bar>
-        <!-- <div style="height: 64px"></div> -->
+        <div style="height: 64px"></div>
         <slot />
         </v-app>
     </div>

@@ -14,12 +14,13 @@
                 min-height="268"
               >
                 <div class="text-h4">{{mangaTitle?.title}}</div>
-                <div height="500px">
+                <div>
                   <v-img
                     v-if="mangaTitle?.firstCoverImage"
-                    :src="mangaTitle?.firstCoverImage"
-                    :lazy-src="mangaTitle?.firstCoverImage"
+                    :src="mangaTitle.firstCoverImage"
+                    :lazy-src="mangaTitle.firstCoverImage"
                     width="100%"
+                    height="300px"
                 />
                 </div>
               </v-sheet>

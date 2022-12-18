@@ -20,4 +20,7 @@ export default defineNuxtConfig({
       'vuetify',
     ],
   },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
 })
