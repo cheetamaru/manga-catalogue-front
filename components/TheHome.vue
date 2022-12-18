@@ -41,6 +41,9 @@
         <v-alert v-if="error">
           {{ error }}
         </v-alert>
+        <v-alert v-else-if="pending">
+          Loading...
+        </v-alert>
         <v-alert v-else-if="!list.length">
           Search is empty!
         </v-alert>

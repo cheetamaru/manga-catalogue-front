@@ -1,3 +1,5 @@
 <template>
-  <TheMangaInfo />
+  <div>
+    <TheMangaInfo />
+  </div>
 </template>

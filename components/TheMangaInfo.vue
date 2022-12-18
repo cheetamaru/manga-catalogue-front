@@ -1,7 +1,10 @@
 <template>
     <v-app id="inspire">
       <v-main class="bg-grey-lighten-3">
-        <v-container>
+        <v-container v-if="pending">
+          Loading...
+        </v-container>
+        <v-container v-else>
           <v-row>
             <v-col
               cols="12"
@@ -12,11 +15,8 @@
               >
                 <div class="text-h4">{{mangaTitle?.title}}</div>
                 <div height="500px">
-                  <div v-if="pending">
-                    Loading
-                  </div>
                   <v-img
-                    v-else-if="mangaTitle?.firstCoverImage"
+                    v-if="mangaTitle?.firstCoverImage"
                     :src="mangaTitle?.firstCoverImage"
                     :lazy-src="mangaTitle?.firstCoverImage"
                     width="100%"
@@ -38,7 +38,6 @@
                 <div class="text-h5">Description</div>
                 <v-divider />
                 <div>{{mangaTitle?.description}}</div>
-
                 <v-divider :thickness="4" />
 
                 <div>
