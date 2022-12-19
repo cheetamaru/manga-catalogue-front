@@ -1,5 +1,4 @@
 <template>
-  <v-app id="inspire">
     <client-only>
       <v-navigation-drawer :location="'right'" v-model="sidebar" temporary app>
       <v-list>
@@ -7,7 +6,7 @@
           <v-form>
             <v-select
               v-model="status"
-              label="Select"
+              label="Status"
               :items="statusOptions"
               clearable
             ></v-select>
@@ -61,15 +60,14 @@
             v-for="(item, index) of list"
             :key="index"
             cols="3"
-            md="3"
-            sm="6"
           >
             <v-card max-height="500px" hover elevation="2" ripple :to="{ path: `/manga-info/${item.id}` }">
               <v-img
                 v-if="item?.firstCoverImage"
                 :src="item.firstCoverImage"
                 :lazy-src="item.firstCoverImage"
-                height="300px"
+                :aspect-ratio="2/3"
+                max-height="300px"
               >
             </v-img>
 
@@ -91,7 +89,6 @@
         <v-pagination v-if="list.length" v-model="page" :length="totalPages" density="comfortable" rounded />
       </v-container>
     </v-main>
-  </v-app>
 </template>
 
 <script setup lang="ts">

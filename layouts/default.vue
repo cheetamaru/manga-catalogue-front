@@ -13,8 +13,19 @@
 
             <v-toolbar-title>Manga Catalogue</v-toolbar-title>
         </v-app-bar>
-        <div style="height: 48px"></div>
+        <v-fade-transition leave-absolute>
+            <div v-if="isExtraSpaceAdded" style="height: 48px" />
+        </v-fade-transition>
         <slot />
         </v-app>
     </div>
 </template>
+
+<script setup>
+// for fixing bug in vuetify: https://github.com/vuetifyjs/vuetify/issues/15202
+const isExtraSpaceAdded = ref(true)
+
+onMounted(() => {
+  isExtraSpaceAdded.value = false
+})
+</script>
