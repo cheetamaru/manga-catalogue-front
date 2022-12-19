@@ -3,6 +3,11 @@
         <v-container v-if="pending">
           Loading...
         </v-container>
+        <v-container v-else-if="error">
+          <v-alert>
+            {{ error }}
+          </v-alert>
+        </v-container>
         <v-container v-else>
           <v-row>
             <v-col
@@ -50,7 +55,7 @@
                   <div class="text-h5 font-weight-bold">Information</div>
                   <v-divider class="pb-2" />
                   <div>
-                    <strong>Status</strong>: {{ mangaTitle?.status }}
+                    <strong>Status</strong>:  <manga-title-status :status="mangaTitle?.status" />
                   </div>
                   <div>
                     <strong>Chapters</strong>: {{ mangaTitle?.chapterCount }}

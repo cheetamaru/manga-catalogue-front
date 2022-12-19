@@ -76,7 +76,7 @@
               </v-card-title>
 
               <v-card-subtitle>
-                Status: {{item && item.status}}
+                Status: <manga-title-status :status="item && item.status" />
               </v-card-subtitle>
               
               <v-card-text>
