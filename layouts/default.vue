@@ -5,30 +5,16 @@
             app
             :model-value="true"
             style="width: 100%"
+            :density="'compact'"
             >
             <v-btn icon @click="$router.push('/')">
                 <v-icon>mdi-alpha-m-box</v-icon>
             </v-btn>
 
             <v-toolbar-title>Manga Catalogue</v-toolbar-title>
-
-            <v-spacer></v-spacer>
-            <v-btn
-                v-show="showSearch"
-                icon 
-                @click="sidebar = !sidebar"
-                :active="sidebar"
-            >
-                <v-icon>mdi-magnify</v-icon>
-            </v-btn>
         </v-app-bar>
-        <div style="height: 64px"></div>
+        <div style="height: 48px"></div>
         <slot />
         </v-app>
     </div>
 </template>
-
-<script setup lang="ts">
-const sidebar = useState('sidebar', () => false)
-const showSearch = useState('showSearch', () => false)
-</script>

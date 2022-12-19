@@ -32,12 +32,24 @@ export const useMangaListPage = () => {
   const page = ref<number | undefined>(route.query.page ? Number(route.query.page) : 1)
   const ordering = ref(route.query.ordering ? String(route.query.ordering) : undefined)
 
-  const orderingMap = {
-    stratDateUp: 'startDate',
-    startDateDown: '-startDate',
-  }
-
-  const orderingOptions = Object.values(orderingMap)
+  const orderingOptions = [
+    {
+      title: 'Start date asc',
+      value: 'startDate',
+    },
+    {
+      title: 'Start date desc',
+      value: '-startDate',
+    },
+    {
+      title: 'End date asc',
+      value: 'endDate',
+    },
+    {
+      title: 'End date desc',
+      value: '-endDate',
+    },
+  ]
 
   const query = computed(() => {
     return {
@@ -69,6 +81,15 @@ export const useMangaListPage = () => {
     page.value = 1
   })
 
+  const filters = computed(() => [
+    ordering.value,
+    status.value,
+  ])
+
+  const isFilterEmpty = computed(() => {
+    return !filters.value.some((el) => el)
+  })
+
   const { data, pending, error, refresh } = fetchMangaList(query)
 
   const list = computed(() => data.value?.results || [])
@@ -93,9 +114,14 @@ export const useMangaListPage = () => {
   
   const debouncedUpdateSearch = debounce(updateSearch, 100)
   
-  const onSearch = (val) => {
+  const onSearch = (val: string) => {
     debouncedUpdateSearch(val)
-  }  
+  }
+
+  const resetFilters = () => {
+    status.value = undefined
+    ordering.value = undefined
+  }
 
   return {
     fetch,
@@ -112,5 +138,7 @@ export const useMangaListPage = () => {
     orderingOptions,
     loading,
     onSearch,
+    isFilterEmpty,
+    resetFilters,
   }
 }

@@ -1,18 +1,10 @@
 <template>
   <v-app id="inspire">
     <client-only>
-      <v-navigation-drawer :location="'right'" :model-value="sidebar" permanent app>
+      <v-navigation-drawer :location="'right'" v-model="sidebar" temporary app>
       <v-list>
         <v-list-item :key="123">
           <v-form>
-            <v-text-field
-              :model-value="search"
-              @update:model-value="onSearch"
-              variant="outlined"
-              placeholder="Search"
-              clearable
-            >
-            </v-text-field>
             <v-select
               v-model="status"
               label="Select"
@@ -33,6 +25,28 @@
 
     <v-main>
       <v-container>
+          <v-form>
+            <v-container>
+              <v-row>
+                <v-col
+                  cols="12"
+                >
+                <v-text-field
+                  :model-value="search"
+                  @update:model-value="onSearch"
+                  variant="outlined"
+                  placeholder="Search"
+                  clearable
+                  :append-inner-icon="isFilterEmpty ? undefined : 'mdi-delete-sweep'"
+                  :append-icon="isFilterEmpty ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'"
+                  @click:append="sidebar = !sidebar"
+                  @click:append-inner="resetFilters"
+                ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+        </v-form>
+        
         <v-alert v-if="error">
           {{ error }}
         </v-alert>
@@ -47,6 +61,8 @@
             v-for="(item, index) of list"
             :key="index"
             cols="3"
+            md="3"
+            sm="6"
           >
             <v-card max-height="500px" hover elevation="2" ripple :to="{ path: `/manga-info/${item.id}` }">
               <v-img
@@ -91,15 +107,11 @@ const {
   orderingOptions,
   loading,
   onSearch,
+  isFilterEmpty,
+  resetFilters,
 } = useMangaListPage()
 
-const sidebar = useState<boolean>('sidebar')
-const showSearch = useState<boolean>('showSearch')
-showSearch.value = true
-
-onUnmounted(() => {
-  showSearch.value = false
-})
+const sidebar = ref(false)
 
 preloadRouteComponents('/manga-info/[id]')
 </script>
