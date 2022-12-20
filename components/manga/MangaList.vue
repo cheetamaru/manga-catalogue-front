@@ -76,7 +76,7 @@
               </v-card-title>
 
               <v-card-subtitle>
-                Status: <manga-title-status :status="item?.status" />
+                Status: <MangaPublishingStatus :status="item?.status" />
               </v-card-subtitle>
               
               <v-card-text>

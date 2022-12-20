@@ -55,7 +55,7 @@
                   <div class="text-h5 font-weight-bold">Information</div>
                   <v-divider class="pb-2" />
                   <div>
-                    <strong>Status</strong>:  <manga-title-status :status="mangaTitle?.status" />
+                    <strong>Status</strong>:  <MangaPublishingStatus :status="mangaTitle?.status" />
                   </div>
                   <div>
                     <strong>Chapters</strong>: {{ mangaTitle?.chapterCount }}
