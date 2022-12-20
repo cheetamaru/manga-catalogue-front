@@ -6,7 +6,7 @@ export const useMangaListPage = () => {
   const router = useRouter()
   const route = useRoute()
 
-  const { fetchMangaList } = useFetchMangaList()
+  const { fetchMangaList } = useFetchManga()
     
   type MangaPublishingStatusOption = {
     title: string;

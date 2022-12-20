@@ -1,7 +1,7 @@
 export const useMangaInfoPage = () => {
   const route = useRoute()
 
-  const { fetchMangaItem } = useFetchMangaItem()
+  const { fetchMangaItem } = useFetchManga()
 
   const mangaTitleId = computed(() => {
     if (Array.isArray(route.params.id)) {

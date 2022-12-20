@@ -1,14 +1,15 @@
 import { BaseApiService } from '@/shared/services/api/BaseApiService'
-import { MangaListFetchQuery } from '~~/types/Types'
+import type { MangaListFetchQuery, MangaListResponse } from '~~/types/Types'
+import type { MangaTitle } from '~~/types/ApiTypes';
 
 export class MangaListApiService extends BaseApiService {
   apiNamespace = ''
 
-  fetchList<T>(query?: MangaListFetchQuery) {
-    return this.get<T>({url: '/list/', query})
+  fetchList(query?: MangaListFetchQuery) {
+    return this.get<MangaListResponse>({url: '/list/', query})
   }
 
-  fetchItem<T>(id: string) {
-    return this.get<T>({url: `/getById/${id}`})
+  fetchItem(id: string) {
+    return this.get<MangaTitle>({url: `/getById/${id}`})
   }
 }
