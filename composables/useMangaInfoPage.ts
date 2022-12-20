@@ -1,5 +1,6 @@
 export const useMangaInfoPage = () => {
   const route = useRoute()
+
   const { fetchMangaItem } = useFetchMangaItem()
 
   const mangaTitleId = computed(() => {

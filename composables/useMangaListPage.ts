@@ -1,4 +1,6 @@
 import debounce from 'lodash.debounce'
+import type { MangaTitle } from '~~/types/ApiTypes'
+import type { MangaPublishingStatus } from '~~/types/Types'
 
 export const useMangaListPage = () => {
   const router = useRouter()
@@ -6,33 +8,38 @@ export const useMangaListPage = () => {
 
   const { fetchMangaList } = useFetchMangaList()
     
-  const statusOptions = [{
-    title: 'finished',
+  type MangaPublishingStatusOption = {
+    title: string;
+    value: MangaPublishingStatus
+  }
+
+  const statusOptions: MangaPublishingStatusOption[] = [{
+    title: 'Finished',
     value: 'finished',
   },
   {
-    title: 'ongoing',
+    title: 'Ongoing',
     value: 'ongoing',
   },
   {
-    title: 'hiatus',
+    title: 'On hiatus',
     value: 'hiatus',
   },
   {
-    title: 'canceled',
+    title: 'Canceled',
     value: 'canceled',
   },
   {
-    title: 'notstarted',
+    title: 'Not started',
     value: 'notstarted',
   }]
 
-  const search = ref(route.query.search ? String(route.query.search) : '')
-  const status = ref(route.query.status ? String(route.query.status) : undefined)
-  const page = ref<number | undefined>(route.query.page ? Number(route.query.page) : 1)
-  const ordering = ref(route.query.ordering ? String(route.query.ordering) : undefined)
+  type MangaOrderingOption = {
+    title: string;
+    value: keyof MangaTitle | `-${keyof MangaTitle}`;
+  }
 
-  const orderingOptions = [
+  const orderingOptions: MangaOrderingOption[] = [
     {
       title: 'Start date asc',
       value: 'startDate',
@@ -50,6 +57,11 @@ export const useMangaListPage = () => {
       value: '-endDate',
     },
   ]
+
+  const search = ref(route.query.search ? String(route.query.search) : '')
+  const status = ref(route.query.status ? String(route.query.status) : undefined)
+  const page = ref<number | undefined>(route.query.page ? Number(route.query.page) : 1)
+  const ordering = ref(route.query.ordering ? String(route.query.ordering) : undefined)
 
   const query = computed(() => {
     return {

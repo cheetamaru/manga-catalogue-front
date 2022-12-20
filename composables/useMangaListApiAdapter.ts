@@ -1,6 +1,6 @@
-import { AsyncData } from 'nuxt/dist/app/composables/asyncData'
-import { MangaTitle } from '~~/types/ApiTypes';
-import { MangaListFetchQuery, ResponseError, MangaListResponse } from '~~/types/Types'
+import type { AsyncData } from 'nuxt/dist/app/composables/asyncData'
+import type { MangaTitle } from '~~/types/ApiTypes';
+import type { MangaListFetchQuery, ResponseError, MangaListResponse } from '~~/types/Types'
 import type { ComputedRef } from 'vue'
 
 type IMangaApi = {
