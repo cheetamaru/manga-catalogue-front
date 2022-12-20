@@ -11,9 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import { MangaTitle } from '~~/types/ApiTypes';
+import { MangaPublishingStatus } from '~~/types/Types';
 
-const statusChipMapper: Record<NonNullable<MangaTitle['status']>, unknown> = {
+type VChipMapperValue = {
+  color: string,
+  'prepend-icon': string
+}
+
+const statusChipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
   finished: {
     color: 'indigo',
     'prepend-icon': 'mdi-check-circle',
@@ -37,6 +42,6 @@ const statusChipMapper: Record<NonNullable<MangaTitle['status']>, unknown> = {
 }
 
 defineProps<{
-    status: MangaTitle['status']
+    status?: MangaPublishingStatus | null
 }>()
 </script>

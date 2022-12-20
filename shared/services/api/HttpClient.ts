@@ -21,7 +21,6 @@ export class HttpClient implements IApiService {
     body,
     options,
   }: ApiRequestPayload): ApiResponse<T> {
-    // try {
     return this.client<T>(url,
       {
         method,
@@ -29,22 +28,7 @@ export class HttpClient implements IApiService {
         body,
         ...options,
       })
-    // .then((response): response is T => {
-    //     return response
-    // })
-    // .catch((e): e is ApiError<E> => {
-    //     return e
-    // })
-    // return response
-    // } catch (e) {
-    //     return e as ApiError<E>
-    // }
-        
   }
-
-  // post () {
-
-  // }
 
   get<T>(payload: ApiMethodRequestPayload) {
     return this.request<T>({
@@ -52,12 +36,4 @@ export class HttpClient implements IApiService {
       ...payload,
     })
   }
-
-  // patch () {
-        
-  // }
-
-  // delete () {
-        
-  // }
 }
