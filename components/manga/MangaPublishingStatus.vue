@@ -1,6 +1,6 @@
 <template>
   <v-chip
-    v-bind="statusChipMapper[status || 'finished']"
+    v-bind="propsToBind"
     size="x-small"
     class="pa-2"
     label
@@ -13,10 +13,18 @@
 <script setup lang="ts">
 import { MangaPublishingStatus } from '~~/types/Types';
 
+const props = defineProps<{
+    status?: MangaPublishingStatus | null
+}>()
+
 type VChipMapperValue = {
   color: string,
   'prepend-icon': string
 }
+
+const propsToBind = computed(() => {
+  return props.status ? statusChipMapper[props.status] : {}
+})
 
 const statusChipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
   finished: {
@@ -40,8 +48,4 @@ const statusChipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
     'prepend-icon': 'mdi-circle-outline',
   },
 }
-
-defineProps<{
-    status?: MangaPublishingStatus | null
-}>()
 </script>

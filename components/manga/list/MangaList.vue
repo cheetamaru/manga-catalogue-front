@@ -2,7 +2,7 @@
   <client-only>
     <v-navigation-drawer
       v-model="sidebar"
-      :location="'right'"
+      location="right"
       temporary
       app
     >
@@ -32,16 +32,14 @@
       <v-form>
         <v-container>
           <v-row>
-            <v-col
-              cols="12"
-            >
+            <v-col cols="12">
               <v-text-field
                 :model-value="search"
+                :append-inner-icon="isFilterEmpty ? undefined : 'mdi-delete-sweep'"
+                :append-icon="isFilterEmpty ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'"
                 variant="outlined"
                 placeholder="Search"
                 clearable
-                :append-inner-icon="isFilterEmpty ? undefined : 'mdi-delete-sweep'"
-                :append-icon="isFilterEmpty ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'"
                 @update:model-value="onSearch"
                 @click:append="sidebar = !sidebar"
                 @click:append-inner="resetFilters"
@@ -62,38 +60,14 @@
       </v-alert>
       <v-row>
         <v-col
-          v-for="(item, index) of list"
-          :key="index"
+          v-for="item of list"
+          :key="item.id"
           cols="3"
         >
-          <v-card
-            max-height="500px"
-            hover
-            elevation="2"
-            ripple
-            :to="{ path: `/manga-info/${item.id}` }"
-          >
-            <v-img
-              v-if="item?.firstCoverImage"
-              :src="item.firstCoverImage"
-              :lazy-src="item.firstCoverImage"
-              :aspect-ratio="2/3"
-              max-height="300px"
-            />
-
-            <v-card-title>
-              {{ item && item.title }}
-            </v-card-title>
-
-            <v-card-subtitle>
-              Status: <MangaPublishingStatus :status="item?.status" />
-            </v-card-subtitle>
-              
-            <v-card-text>
-              <span>Chapters: {{ item?.chapterCount }}</span> | 
-              <span>Volumes: {{ item?.volumeCount }}</span> 
-            </v-card-text>
-          </v-card>
+          <MangaListItem
+            :item="item"
+            :to="{ path: `/manga-info/${item?.id}` }"
+          />
         </v-col>
       </v-row>
       <v-pagination

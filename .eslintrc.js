@@ -42,5 +42,6 @@ module.exports = {
       'ignores': ['index', '[id]', 'default'],
     }],
     'vue/html-indent': ['error'],
+    'object-curly-spacing': ['error', 'always'],
   },
 }
