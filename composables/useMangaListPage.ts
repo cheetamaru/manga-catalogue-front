@@ -8,31 +8,27 @@ export const useMangaListPage = () => {
 
   const { fetchMangaList } = useFetchManga()
     
+  const { getStatusNameByValue } = useMangaPublishingStatusName()
+
   type MangaPublishingStatusOption = {
     title: string;
     value: MangaPublishingStatus
   }
 
-  const statusOptions: MangaPublishingStatusOption[] = [{
-    title: 'Finished',
-    value: 'finished',
-  },
-  {
-    title: 'Ongoing',
-    value: 'ongoing',
-  },
-  {
-    title: 'On hiatus',
-    value: 'hiatus',
-  },
-  {
-    title: 'Canceled',
-    value: 'canceled',
-  },
-  {
-    title: 'Not started',
-    value: 'notstarted',
-  }]
+  const availableStatuses: MangaPublishingStatus[] = [
+    'finished',
+    'ongoing',
+    'hiatus',
+    'canceled',
+    'notstarted',
+  ]
+
+  const statusOptions: MangaPublishingStatusOption[] = availableStatuses.map((el) => {
+    return {
+      title: getStatusNameByValue(el),
+      value: el,
+    }
+  })
 
   type MangaOrderingOption = {
     title: string;

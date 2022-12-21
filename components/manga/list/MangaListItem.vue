@@ -15,7 +15,7 @@
     />
 
     <v-card-title>
-      {{ item && item.title }}
+      {{ item?.title }}
     </v-card-title>
 
     <v-card-subtitle>

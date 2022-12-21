@@ -6,46 +6,22 @@
     label
     pill
   >
-    {{ status }}
+    {{ getStatusNameByValue(status ?? 'ongoing') }}
   </v-chip>
 </template>
 
 <script setup lang="ts">
 import { MangaPublishingStatus } from '~~/types/Types';
+import { mangaPublishingStatusDomain } from '@/domains/mangaPublishingStatusDomain.ts'
 
 const props = defineProps<{
     status?: MangaPublishingStatus | null
 }>()
 
-type VChipMapperValue = {
-  color: string,
-  'prepend-icon': string
-}
+const { getStatusNameByValue } = useMangaPublishingStatusName()
+const { chipMapper } = mangaPublishingStatusDomain
 
 const propsToBind = computed(() => {
-  return props.status ? statusChipMapper[props.status] : {}
+  return props.status ? chipMapper[props.status] : {}
 })
-
-const statusChipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
-  finished: {
-    color: 'indigo',
-    'prepend-icon': 'mdi-check-circle',
-  },
-  ongoing: {
-    color: 'green',
-    'prepend-icon': 'mdi-chevron-right-circle',
-  },
-  hiatus: {
-    color: 'orange',
-    'prepend-icon': 'mdi-circle-slice-3',
-  },
-  canceled: {
-    color: 'red',
-    'prepend-icon': 'mdi-close-circle',
-  },
-  notstarted: {
-    color: 'teal',
-    'prepend-icon': 'mdi-circle-outline',
-  },
-}
 </script>
