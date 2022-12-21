@@ -1,13 +1,13 @@
 <template>
-    <v-chip
-        v-bind="statusChipMapper[status || 'finished']"
-        size="x-small"
-        class="pa-2"
-        label
-        pill
-    >
-        {{ status }}
-    </v-chip>
+  <v-chip
+    v-bind="statusChipMapper[status || 'finished']"
+    size="x-small"
+    class="pa-2"
+    label
+    pill
+  >
+    {{ status }}
+  </v-chip>
 </template>
 
 <script setup lang="ts">

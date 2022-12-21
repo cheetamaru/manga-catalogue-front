@@ -1,5 +1,5 @@
 <template>
-    <div>
-      <MangaList />
-    </div>
+  <div>
+    <MangaList />
+  </div>
 </template>

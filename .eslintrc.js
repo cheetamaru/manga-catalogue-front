@@ -5,9 +5,16 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-recommended',
+    'eslint:recommended',
   ],
   overrides: [
+    {
+      files: ['*.ts', '*.vue'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -34,5 +41,6 @@ module.exports = {
     'vue/multi-word-component-names': ['error', {
       'ignores': ['index', '[id]', 'default'],
     }],
+    'vue/html-indent': ['error'],
   },
 }

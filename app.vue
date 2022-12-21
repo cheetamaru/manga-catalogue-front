@@ -23,4 +23,8 @@
   opacity: 0;
   filter: blur(1rem);
 }
+
+.consistent-height {
+  height: max(100%, 100vh);
+}
 </style>
