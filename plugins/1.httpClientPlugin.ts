@@ -1,7 +1,12 @@
 import { HttpClient } from '@/shared/services/api/HttpClient'
+import { getBaseApiUrl } from '~~/shared/utils/getBaseApiUrl'
 
 export default defineNuxtPlugin(() => {
-  const baseURL = 'http://127.0.0.1:8000/api'
+  const baseURL = getBaseApiUrl()
+
+  if (!baseURL) {
+    throw new Error('[httpClientPlugin] Base Api Url Not Found')
+  }
 
   const fetchClient = $fetch.create({ baseURL })
 

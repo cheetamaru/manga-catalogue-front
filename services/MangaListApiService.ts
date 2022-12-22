@@ -6,10 +6,10 @@ export class MangaListApiService extends BaseApiService {
   apiNamespace = ''
 
   fetchList(query?: MangaListFetchQuery) {
-    return this.get<MangaListResponse>({url: '/list/', query})
+    return this.get<MangaListResponse>({ url: '/list/', query })
   }
 
   fetchItem(id: string) {
-    return this.get<MangaTitle>({url: `/getById/${id}`})
+    return this.get<MangaTitle>({ url: `/getById/${id}` })
   }
 }
