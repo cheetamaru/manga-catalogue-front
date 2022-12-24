@@ -26,7 +26,11 @@
           cols="12"
           sm="3"
         >
-          <MangaInfoRightCol :manga-title="mangaTitle" />
+          <MangaInfoRightCol
+            :manga-title="mangaTitle"
+            :authors="authors"
+            :genres="genres"
+          />
         </v-col>
       </v-row>
     </v-container>
@@ -38,5 +42,7 @@ const {
   mangaTitle,
   pending,
   error,
+  authors,
+  genres,
 } = useMangaInfoPage()
 </script>

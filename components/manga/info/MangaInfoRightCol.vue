@@ -15,7 +15,7 @@
         <strong>Volumes</strong>: {{ mangaTitle?.volumeCount }}
       </div>
       <div>
-        <strong>Authors</strong>: {{ mangaTitle?.authors?.map((el) => `${el.firstName} ${el.surname}`).join(', ') }}
+        <strong>Authors</strong>: {{ authors }}
       </div>
       <div>
         <strong>Start Date</strong>: {{ mangaTitle?.startDate }}
@@ -24,7 +24,7 @@
         <strong>End Date</strong>: {{ mangaTitle?.endDate || '-' }}
       </div>
       <div>
-        <strong>Genres</strong>: {{ mangaTitle?.genres?.map((el) => `${el.name}`).join(', ') }}
+        <strong>Genres</strong>: {{ genres }}
       </div>
     </div>
   </v-sheet>
@@ -34,6 +34,8 @@
 import { MangaTitle } from '~~/types/ApiTypes';
 
 defineProps<{
-    mangaTitle: MangaTitle | null
+    mangaTitle: MangaTitle | null;
+    authors: string;
+    genres: string;
 }>()
 </script>
