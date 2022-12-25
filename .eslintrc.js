@@ -5,8 +5,9 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/vue3-recommended',
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
   ],
   overrides: [
     {
@@ -43,5 +44,6 @@ module.exports = {
     }],
     'vue/html-indent': ['error'],
     'object-curly-spacing': ['error', 'always'],
+    'no-trailing-spaces': 'error',
   },
 }

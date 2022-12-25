@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="pa-3"> 
+  <v-sheet class="pa-3">
     <div class="text-h5 font-weight-bold">
       Synopsis
     </div>

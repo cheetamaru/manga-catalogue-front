@@ -8,7 +8,7 @@ import {
 } from './types';
 
 export class BaseApiService implements IApiService {
-  protected apiNamespace: string = '';
+  protected apiNamespace = '';
   private readonly client: HttpClient;
 
   constructor (client: HttpClient) {

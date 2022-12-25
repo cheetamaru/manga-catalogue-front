@@ -18,7 +18,7 @@ const useOrdering = () => useState<string | undefined>('ordering')
 
 export const useMangaListFilters = () => {
   const { getStatusNameByValue } = useMangaPublishingStatusName()
-  
+
   const availableStatuses: MangaPublishingStatus[] = [
     'finished',
     'ongoing',
@@ -26,14 +26,14 @@ export const useMangaListFilters = () => {
     'canceled',
     'notstarted',
   ]
-  
+
   const statusOptions: MangaPublishingStatusOption[] = availableStatuses.map((el) => {
     return {
       title: getStatusNameByValue(el),
       value: el,
     }
   })
-  
+
   const orderingOptions: MangaOrderingOption[] = [
     {
       title: 'Start date asc',

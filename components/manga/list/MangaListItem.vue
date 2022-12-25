@@ -21,10 +21,10 @@
     <v-card-subtitle>
       Status: <MangaPublishingStatus :status="item?.status" />
     </v-card-subtitle>
-              
+
     <v-card-text>
-      <span>Chapters: {{ item?.chapterCount }}</span> | 
-      <span>Volumes: {{ item?.volumeCount }}</span> 
+      <span>Chapters: {{ item?.chapterCount }}</span> |
+      <span>Volumes: {{ item?.volumeCount }}</span>
     </v-card-text>
   </v-card>
 </template>

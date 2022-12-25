@@ -20,7 +20,7 @@
           </v-col>
         </v-row>
       </v-form>
-        
+
       <v-alert v-if="error">
         {{ error }}
       </v-alert>

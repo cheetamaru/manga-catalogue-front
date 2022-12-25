@@ -2,7 +2,7 @@ import { $Fetch } from 'nitropack';
 import {
   ApiRequestPayload,
   ApiMethodRequestPayload,
-  HttpMethod, 
+  HttpMethod,
   IApiService,
   ApiResponse,
 } from './types';

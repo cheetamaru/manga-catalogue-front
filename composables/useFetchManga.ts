@@ -16,7 +16,7 @@ export const useFetchManga = () => {
       watch: [query || {}],
     })
   }
-  
+
   return {
     fetchMangaItem,
     fetchMangaList,

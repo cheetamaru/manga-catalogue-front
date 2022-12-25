@@ -3,7 +3,7 @@ import { MangaPublishingStatus } from '~~/types/Types';
 type VChipMapperValue = {
   color: string,
   'prepend-icon': string
-}  
+}
 
 const chipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
   finished: {

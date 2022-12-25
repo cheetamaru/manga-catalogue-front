@@ -81,16 +81,16 @@ export const useMangaListPage = () => {
       setLoading(pending)
       return
     }
-    
+
     debouncedSetLoading(val)
   })
 
   const updateSearch = (val: string) => {
     search.value = val
   }
-  
+
   const debouncedUpdateSearch = debounce(updateSearch, 100)
-  
+
   const onSearch = (val: string) => {
     if (!val) {
       updateSearch(val)
