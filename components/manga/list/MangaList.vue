@@ -30,7 +30,7 @@
       <v-alert v-else-if="isListEmpty">
         Search is empty!
       </v-alert>
-      <v-row>
+      <v-row v-else>
         <v-col
           v-for="item of list"
           :key="item.id"
@@ -43,7 +43,7 @@
         </v-col>
       </v-row>
       <v-pagination
-        v-if="!isListEmpty"
+        v-if="showPagination"
         v-model="page"
         :length="totalPages"
         density="comfortable"
@@ -68,6 +68,7 @@ const {
   appendIcon,
   toggleSidebar,
   getToPath,
+  showPagination,
 } = useMangaListPage()
 
 preloadRouteComponents('/manga-info/[id]')

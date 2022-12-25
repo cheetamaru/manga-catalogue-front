@@ -14,19 +14,19 @@
           cols="12"
           sm="3"
         >
-          <MangaInfoLeftCol :manga-title="mangaTitle" />
+          <MangaInfoCover :manga-title="mangaTitle" />
         </v-col>
         <v-col
           cols="12"
           sm="6"
         >
-          <MangaInfoCenterCol :manga-title="mangaTitle" />
+          <MangaInfoMain :manga-title="mangaTitle" />
         </v-col>
         <v-col
           cols="12"
           sm="3"
         >
-          <MangaInfoRightCol
+          <MangaInfoDetails
             :manga-title="mangaTitle"
             :authors="authors"
             :genres="genres"

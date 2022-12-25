@@ -3,6 +3,7 @@
     <div class="text-h4 text-center mb-2">
       {{ mangaTitle?.title }}
     </div>
+    <v-divider class="pb-2" />
     <v-card flat>
       <v-img
         v-if="mangaTitle?.firstCoverImage"
