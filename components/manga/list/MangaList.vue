@@ -30,23 +30,21 @@
   <v-main>
     <v-container>
       <v-form>
-        <v-container>
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                :model-value="search"
-                :append-inner-icon="isFilterEmpty ? undefined : 'mdi-delete-sweep'"
-                :append-icon="isFilterEmpty ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'"
-                variant="outlined"
-                placeholder="Search"
-                clearable
-                @update:model-value="onSearch"
-                @click:append="sidebar = !sidebar"
-                @click:append-inner="resetFilters"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field
+              :model-value="search"
+              :append-inner-icon="appendInnerIcon"
+              :append-icon="appendIcon"
+              variant="outlined"
+              placeholder="Search"
+              clearable
+              @update:model-value="onSearch"
+              @click:append="toggleSidebar"
+              @click:append-inner="resetFilters"
+            />
+          </v-col>
+        </v-row>
       </v-form>
         
       <v-alert v-if="error">
@@ -55,7 +53,7 @@
       <v-alert v-else-if="loading">
         Loading...
       </v-alert>
-      <v-alert v-else-if="!list.length">
+      <v-alert v-else-if="isListEmpty">
         Search is empty!
       </v-alert>
       <v-row>
@@ -66,12 +64,12 @@
         >
           <MangaListItem
             :item="item"
-            :to="{ path: `/manga-info/${item?.id}` }"
+            :to="getToPath(item?.id)"
           />
         </v-col>
       </v-row>
       <v-pagination
-        v-if="list.length"
+        v-if="!isListEmpty"
         v-model="page"
         :length="totalPages"
         density="comfortable"
@@ -94,11 +92,14 @@ const {
   orderingOptions,
   loading,
   onSearch,
-  isFilterEmpty,
   resetFilters,
+  sidebar,
+  isListEmpty,
+  appendInnerIcon,
+  appendIcon,
+  toggleSidebar,
+  getToPath,
 } = useMangaListPage()
-
-const sidebar = ref(false)
 
 preloadRouteComponents('/manga-info/[id]')
 </script>

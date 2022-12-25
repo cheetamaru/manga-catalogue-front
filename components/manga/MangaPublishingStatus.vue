@@ -6,13 +6,13 @@
     label
     pill
   >
-    {{ getStatusNameByValue(status ?? 'ongoing') }}
+    {{ statusName }}
   </v-chip>
 </template>
 
 <script setup lang="ts">
 import { MangaPublishingStatus } from '~~/types/Types';
-import { mangaPublishingStatusDomain } from '@/domains/mangaPublishingStatusDomain.ts'
+import { mangaPublishingStatusDomain } from '@/domains/mangaPublishingStatusDomain'
 
 const props = defineProps<{
     status?: MangaPublishingStatus | null
@@ -20,6 +20,10 @@ const props = defineProps<{
 
 const { getStatusNameByValue } = useMangaPublishingStatusName()
 const { chipMapper } = mangaPublishingStatusDomain
+
+const statusName = computed(() => {
+  return getStatusNameByValue(props.status ?? 'ongoing')
+})
 
 const propsToBind = computed(() => {
   return props.status ? chipMapper[props.status] : {}

@@ -76,7 +76,7 @@ export const useMangaListPage = () => {
       search: val.search || undefined,
     }
 
-    router.replace({ query: newQuery })
+    router.push({ query: newQuery })
   })
 
   const paramsToResetPageNumber = computed(() => [
@@ -125,20 +125,42 @@ export const useMangaListPage = () => {
     search.value = val
   }
   
-  const debouncedUpdateSearch = debounce(updateSearch, 1000)
+  const debouncedUpdateSearch = debounce(updateSearch, 100)
   
   const onSearch = (val: string) => {
     if (!val) {
       updateSearch(val)
       return
     }
-    
+
     debouncedUpdateSearch(val)
   }
 
   const resetFilters = () => {
     status.value = undefined
     ordering.value = undefined
+  }
+
+  const sidebar = ref(false)
+
+  const isListEmpty = computed(() => {
+    return !list.value.length
+  })
+
+  const appendInnerIcon = computed(() => {
+    return isFilterEmpty.value ? undefined : 'mdi-delete-sweep'
+  })
+
+  const appendIcon = computed(() => {
+    return isFilterEmpty.value ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'
+  })
+
+  const toggleSidebar = () => {
+    sidebar.value = !sidebar.value
+  }
+
+  const getToPath = (id: number | undefined) => {
+    return { path: `/manga-info/${id}` }
   }
 
   return {
@@ -158,5 +180,11 @@ export const useMangaListPage = () => {
     onSearch,
     isFilterEmpty,
     resetFilters,
+    sidebar,
+    isListEmpty,
+    appendInnerIcon,
+    appendIcon,
+    toggleSidebar,
+    getToPath,
   }
 }
