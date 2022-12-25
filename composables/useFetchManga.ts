@@ -2,7 +2,7 @@ import { MangaListFetchQuery } from '~~/types/Types'
 import { ComputedRef } from 'vue'
 
 export const useFetchManga = () => {
-  const { fetchItem, fetchList } = useMangaListApiAdapter()
+  const { fetchItem, fetchList } = useMangaApiAdapter()
 
   const fetchMangaItem = (id: string) => {
     return fetchItem(id, {

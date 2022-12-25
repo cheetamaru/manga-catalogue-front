@@ -1,12 +1,12 @@
 import { HttpClient } from '@/shared/services/api/HttpClient'
-import { MangaListApiService } from '@/services/MangaListApiService'
+import { MangaApiService } from '~~/services/MangaApiService'
 
 export const useApi = (httpClient: HttpClient) => {
-  const mangaListApi = new MangaListApiService(httpClient)
+  const mangaApi = new MangaApiService(httpClient)
 
   return {
     api: {
-      mangaListApi,
+      mangaApi,
     },
   }
 }

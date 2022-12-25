@@ -14,11 +14,15 @@ export const useMangaInfoPage = () => {
   const { data: mangaTitle, pending, error } = fetchMangaItem(mangaTitleId.value)
 
   const authors = computed(() => {
-    return mangaTitle.value?.authors?.map((el) => `${el.firstName} ${el.surname}`).join(', ') || 'unknown'
+    return mangaTitle.value?.authors
+      ?.map((el) => `${el.firstName} ${el.surname}`).join(', ')
+      || 'unknown'
   })
 
   const genres = computed(() => {
-    return mangaTitle.value?.genres?.map((el) => `${el.name}`).join(', ') || 'unknown'
+    return mangaTitle.value?.genres
+      ?.map((el) => `${el.name}`).join(', ')
+      || 'unknown'
   })
 
   return {

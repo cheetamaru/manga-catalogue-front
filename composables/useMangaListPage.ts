@@ -121,10 +121,6 @@ export const useMangaListPage = () => {
     return { path: `/manga-info/${id}` }
   }
 
-  const showPagination = computed(() => {
-    return !isListEmpty.value && !loading.value
-  })  
-
   const {
     sidebar,
     toggleSidebar,
@@ -151,6 +147,5 @@ export const useMangaListPage = () => {
     appendIcon,
     toggleSidebar,
     getToPath,
-    showPagination,
   }
 }

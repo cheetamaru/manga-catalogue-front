@@ -30,25 +30,26 @@
       <v-alert v-else-if="isListEmpty">
         Search is empty!
       </v-alert>
-      <v-row v-else>
-        <v-col
-          v-for="item of list"
-          :key="item.id"
-          cols="3"
-        >
-          <MangaListItem
-            :item="item"
-            :to="getToPath(item?.id)"
-          />
-        </v-col>
-      </v-row>
-      <v-pagination
-        v-if="showPagination"
-        v-model="page"
-        :length="totalPages"
-        density="comfortable"
-        rounded
-      />
+      <v-container v-else>
+        <v-row>
+          <v-col
+            v-for="item of list"
+            :key="item.id"
+            cols="3"
+          >
+            <MangaListItem
+              :item="item"
+              :to="getToPath(item?.id)"
+            />
+          </v-col>
+        </v-row>
+        <v-pagination
+          v-model="page"
+          :length="totalPages"
+          density="comfortable"
+          rounded
+        />
+      </v-container>
     </v-container>
   </v-main>
 </template>
@@ -68,7 +69,6 @@ const {
   appendIcon,
   toggleSidebar,
   getToPath,
-  showPagination,
 } = useMangaListPage()
 
 preloadRouteComponents('/manga-info/[id]')
