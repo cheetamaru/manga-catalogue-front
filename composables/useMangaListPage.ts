@@ -14,11 +14,6 @@ export const useMangaListPage = () => {
     ordering,
   } = useMangaListFilters()
 
-  search.value = route.query.search ? String(route.query.search) : ''
-  status.value = route.query.status ? String(route.query.status) as MangaPublishingStatus : undefined
-  page.value = route.query.page ? Number(route.query.page) : 1
-  ordering.value = route.query.ordering ? String(route.query.ordering) : undefined
-
   const query = computed(() => {
     return {
       search: search.value || undefined,
@@ -37,6 +32,15 @@ export const useMangaListPage = () => {
     }
 
     router.push({ query: newQuery })
+  })
+
+  watch(() => route.query, () => {
+    search.value = route.query.search ? String(route.query.search) : ''
+    status.value = route.query.status ? String(route.query.status) as MangaPublishingStatus : undefined
+    page.value = route.query.page ? Number(route.query.page) : 1
+    ordering.value = route.query.ordering ? String(route.query.ordering) : undefined
+  }, {
+    immediate: true,
   })
 
   const paramsToResetPageNumber = computed(() => [
