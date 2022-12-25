@@ -113,6 +113,11 @@ export const useMangaListPage = () => {
   const debouncedSetLoading = debounce(setLoading, 300)
 
   watch(pending, (val) => {
+    if (!pending) {
+      setLoading(pending)
+      return
+    }
+    
     debouncedSetLoading(val)
   })
 
@@ -120,9 +125,14 @@ export const useMangaListPage = () => {
     search.value = val
   }
   
-  const debouncedUpdateSearch = debounce(updateSearch, 100)
+  const debouncedUpdateSearch = debounce(updateSearch, 1000)
   
   const onSearch = (val: string) => {
+    if (!val) {
+      updateSearch(val)
+      return
+    }
+    
     debouncedUpdateSearch(val)
   }
 
