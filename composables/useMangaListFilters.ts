@@ -1,5 +1,4 @@
-import type { MangaTitle } from '~~/types/ApiTypes'
-import type { MangaPublishingStatus } from '~~/types/Types'
+import type { MangaPublishingStatus, MangaOrderingOptionValue } from '~~/types/Types'
 
 type MangaPublishingStatusOption = {
     title: string;
@@ -8,13 +7,13 @@ type MangaPublishingStatusOption = {
 
 type MangaOrderingOption = {
     title: string;
-    value: keyof MangaTitle | `-${keyof MangaTitle}`;
+    value: MangaOrderingOptionValue;
 }
 
 const useSearch = () => useState<string>('search', () => '')
 const useStatus = () => useState<MangaPublishingStatus | undefined>('status')
 const usePage = () => useState<number>('page', () => 1)
-const useOrdering = () => useState<string | undefined>('ordering')
+const useOrdering = () => useState<MangaOrderingOptionValue | undefined>('ordering')
 
 export const useMangaListFilters = () => {
   const { getStatusNameByValue } = useMangaPublishingStatusName()

@@ -1,3 +1,5 @@
+import { mangaInfoDomain } from '~~/domains/mangaInfoDomain'
+
 export const useMangaInfoPage = () => {
   const route = useRoute()
 
@@ -15,14 +17,14 @@ export const useMangaInfoPage = () => {
 
   const authors = computed(() => {
     return mangaTitle.value?.authors
-      ?.map((el) => `${el.firstName} ${el.surname}`).join(', ')
-      || 'unknown'
+      ? mangaInfoDomain.normalizeAuthors(mangaTitle.value.authors)
+      : 'unknown'
   })
 
   const genres = computed(() => {
     return mangaTitle.value?.genres
-      ?.map((el) => `${el.name}`).join(', ')
-      || 'unknown'
+      ? mangaInfoDomain.normalizeGenres(mangaTitle.value?.genres)
+      : 'unknown'
   })
 
   return {

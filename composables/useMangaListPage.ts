@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce'
-import { MangaPublishingStatus } from '~~/types/Types'
+import { MangaPublishingStatus, MangaOrderingOptionValue } from '~~/types/Types'
 
 export const useMangaListPage = () => {
   const router = useRouter()
@@ -38,7 +38,7 @@ export const useMangaListPage = () => {
     search.value = route.query.search ? String(route.query.search) : ''
     status.value = route.query.status ? String(route.query.status) as MangaPublishingStatus : undefined
     page.value = route.query.page ? Number(route.query.page) : 1
-    ordering.value = route.query.ordering ? String(route.query.ordering) : undefined
+    ordering.value = route.query.ordering ? String(route.query.ordering) as MangaOrderingOptionValue : undefined
   }, {
     immediate: true,
   })
