@@ -14,9 +14,9 @@
                 variant="outlined"
                 placeholder="Search"
                 clearable
-                @update:model-value="onSearch"
+                @update:model-value="onUpdateSearch"
                 @click:append="toggleSidebar"
-                @click:append-inner="resetFilters"
+                @click:append-inner="resetSidebarFilters"
               />
             </v-col>
           </v-row>
@@ -64,8 +64,8 @@ const {
   page,
   totalPages,
   loading,
-  onSearch,
-  resetFilters,
+  onUpdateSearch,
+  resetSidebarFilters,
   isListEmpty,
   appendInnerIcon,
   appendIcon,

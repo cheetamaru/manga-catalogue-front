@@ -1,17 +1,5 @@
-import debounce from 'lodash.debounce'
 import type { MangaPublishingStatus, MangaOrderingOptionValue } from '~~/types/Types'
 
-type MangaPublishingStatusOption = {
-    title: string;
-    value: MangaPublishingStatus
-}
-
-type MangaOrderingOption = {
-    title: string;
-    value: MangaOrderingOptionValue;
-}
-
-const useSearch = () => useState<string>('search', () => '')
 const useStatus = () => useState<MangaPublishingStatus | undefined>('status')
 const usePage = () => useState<number>('page', () => 1)
 const useOrdering = () => useState<MangaOrderingOptionValue | undefined>('ordering')
@@ -20,43 +8,9 @@ export const useMangaListFilters = () => {
   const router = useRouter()
   const route = useRoute()
 
-  const { getStatusNameByValue } = useMangaPublishingStatusName()
+  const { statusOptions, orderingOptions } = useMangaListFiltersOptions()
+  const { search, onUpdateSearch } = useMangaListFiltersSearch()
 
-  const availableStatuses: MangaPublishingStatus[] = [
-    'finished',
-    'ongoing',
-    'hiatus',
-    'canceled',
-    'notstarted',
-  ]
-
-  const statusOptions: MangaPublishingStatusOption[] = availableStatuses.map((el) => {
-    return {
-      title: getStatusNameByValue(el),
-      value: el,
-    }
-  })
-
-  const orderingOptions: MangaOrderingOption[] = [
-    {
-      title: 'Start date asc',
-      value: 'startDate',
-    },
-    {
-      title: 'Start date desc',
-      value: '-startDate',
-    },
-    {
-      title: 'End date asc',
-      value: 'endDate',
-    },
-    {
-      title: 'End date desc',
-      value: '-endDate',
-    },
-  ]
-
-  const search = useSearch()
   const status = useStatus()
   const page = usePage()
   const ordering = useOrdering()
@@ -97,46 +51,28 @@ export const useMangaListFilters = () => {
   ])
 
   watch(paramsToResetPageNumber, () => {
+    if (page.value === 1) {
+      return
+    }
+
     page.value = 1
   })
 
-  const filters = computed(() => [
+  const sidebarFilters = computed(() => [
     ordering.value,
     status.value,
   ])
 
-  const isFilterEmpty = computed(() => {
-    return !filters.value.some((el) => el)
+  const areSidebarFiltersEmpty = computed(() => {
+    return !sidebarFilters.value.some((el) => el)
   })
 
-  const updateSearch = (val: string) => {
-    search.value = val
-  }
-
-  const debouncedUpdateSearch = debounce(updateSearch, 300)
-
-  const onSearch = (val: string) => {
-    if (!val) {
-      debouncedUpdateSearch.cancel()
-      updateSearch(val)
-      return
-    }
-
-    debouncedUpdateSearch(val)
-  }
-
-  const resetFilters = () => {
+  const resetSidebarFilters = () => {
     status.value = undefined
     ordering.value = undefined
   }
 
-  const appendInnerIcon = computed(() => {
-    return isFilterEmpty.value ? undefined : 'mdi-delete-sweep'
-  })
-
-  const appendIcon = computed(() => {
-    return isFilterEmpty.value ? 'mdi-filter-menu-outline' : 'mdi-filter-menu'
-  })
+  const { appendIcon, appendInnerIcon } = useMangaListSearchIcons(areSidebarFiltersEmpty)
 
   return {
     statusOptions,
@@ -146,9 +82,8 @@ export const useMangaListFilters = () => {
     page,
     ordering,
     query,
-    isFilterEmpty,
-    onSearch,
-    resetFilters,
+    onUpdateSearch,
+    resetSidebarFilters,
     appendInnerIcon,
     appendIcon,
   }
