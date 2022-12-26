@@ -20,11 +20,7 @@
 
 <script setup lang="ts">
 import { MangaTitle } from '~~/types/ApiTypes';
-
-type DetailsItem = {
-  title: string;
-  value: string | number
-}
+import { MangaInfoDetailsItem } from '~~/types/Types'
 
 const props = defineProps<{
     mangaTitle: MangaTitle | null;
@@ -32,16 +28,9 @@ const props = defineProps<{
     genres: string;
 }>()
 
-const createDetailsItem = (
-  title: DetailsItem['title'],
-  value?: DetailsItem['value'] | null) => {
-  return {
-    title,
-    value: value ?? 'unknown',
-  }
-}
+const { createDetailsItem } = useMangaInfoPage()
 
-const detailsList = computed<DetailsItem[]>(() => [
+const detailsList = computed<MangaInfoDetailsItem[]>(() => [
   createDetailsItem('Chapters', props.mangaTitle?.chapterCount),
   createDetailsItem('Volumes', props.mangaTitle?.volumeCount),
   createDetailsItem('Authors', props.authors),

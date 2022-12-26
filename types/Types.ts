@@ -15,3 +15,8 @@ export type MangaListFetchQuery = {
 }
 
 export type MangaOrderingOptionValue = keyof MangaTitle | `-${keyof MangaTitle}`
+
+export type MangaInfoDetailsItem = {
+  title: string;
+  value: string | number
+}
