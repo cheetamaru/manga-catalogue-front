@@ -28,7 +28,7 @@ const props = defineProps<{
     genres: string;
 }>()
 
-const { createDetailsItem } = useMangaInfoPage()
+const { createDetailsItem } = useMangaInfoDetails()
 
 const detailsList = computed<MangaInfoDetailsItem[]>(() => [
   createDetailsItem('Chapters', props.mangaTitle?.chapterCount),

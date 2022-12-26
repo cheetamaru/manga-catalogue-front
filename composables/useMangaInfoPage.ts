@@ -1,5 +1,4 @@
 import { mangaInfoDomain } from '~~/domains/mangaInfoDomain'
-import { MangaInfoDetailsItem } from '~~/types/Types'
 
 export const useMangaInfoPage = () => {
   const route = useRoute()
@@ -28,21 +27,11 @@ export const useMangaInfoPage = () => {
       : 'unknown'
   })
 
-  const createDetailsItem = (
-    title: MangaInfoDetailsItem['title'],
-    value?: MangaInfoDetailsItem['value'] | null) => {
-    return {
-      title,
-      value: value ?? 'unknown',
-    }
-  }
-
   return {
     mangaTitle,
     pending,
     error,
     authors,
     genres,
-    createDetailsItem,
   }
 }
