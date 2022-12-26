@@ -7,6 +7,7 @@ export const useFetchManga = () => {
   const fetchMangaItem = (id: string) => {
     return fetchItem(id, {
       lazy: true,
+      immediate: false,
     })
   }
 
