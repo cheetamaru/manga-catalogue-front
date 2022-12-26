@@ -37,7 +37,7 @@ const createDetailsItem = (
   value?: DetailsItem['value'] | null) => {
   return {
     title,
-    value: value || 'unknown',
+    value: value ?? 'unknown',
   }
 }
 
