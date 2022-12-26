@@ -4,21 +4,23 @@
   <v-main>
     <v-container>
       <v-form>
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-              :model-value="search"
-              :append-inner-icon="appendInnerIcon"
-              :append-icon="appendIcon"
-              variant="outlined"
-              placeholder="Search"
-              clearable
-              @update:model-value="onSearch"
-              @click:append="toggleSidebar"
-              @click:append-inner="resetFilters"
-            />
-          </v-col>
-        </v-row>
+        <v-container>
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                :model-value="search"
+                :append-inner-icon="appendInnerIcon"
+                :append-icon="appendIcon"
+                variant="outlined"
+                placeholder="Search"
+                clearable
+                @update:model-value="onSearch"
+                @click:append="toggleSidebar"
+                @click:append-inner="resetFilters"
+              />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
 
       <v-alert v-if="error">
@@ -39,7 +41,7 @@
           >
             <MangaListItem
               :item="item"
-              :to="getToPath(item?.id)"
+              :to="getMangaInfoRoute(item?.id)"
             />
           </v-col>
         </v-row>
@@ -68,7 +70,7 @@ const {
   appendInnerIcon,
   appendIcon,
   toggleSidebar,
-  getToPath,
+  getMangaInfoRoute,
 } = useMangaListPage()
 
 preloadRouteComponents('/manga-info/[id]')

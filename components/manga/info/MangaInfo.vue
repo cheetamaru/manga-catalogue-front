@@ -44,8 +44,5 @@ const {
   error,
   authors,
   genres,
-  initPage,
 } = useMangaInfoPage()
-
-initPage()
 </script>

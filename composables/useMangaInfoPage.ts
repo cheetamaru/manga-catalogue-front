@@ -13,7 +13,7 @@ export const useMangaInfoPage = () => {
     return route.params.id
   })
 
-  const { data: mangaTitle, pending, error, execute } = fetchMangaItem(mangaTitleId.value)
+  const { data: mangaTitle, pending, error } = fetchMangaItem(mangaTitleId.value)
 
   const authors = computed(() => {
     return mangaTitle.value?.authors
@@ -27,19 +27,11 @@ export const useMangaInfoPage = () => {
       : 'unknown'
   })
 
-  const { createDetailsItem } = useMangaInfoDetails()
-
-  const initPage = () => {
-    execute()
-  }
-
   return {
     mangaTitle,
     pending,
     error,
     authors,
     genres,
-    createDetailsItem,
-    initPage,
   }
 }
