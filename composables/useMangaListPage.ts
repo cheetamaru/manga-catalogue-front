@@ -37,11 +37,9 @@ export const useMangaListPage = () => {
   }
 
   return {
-    fetch,
     status,
     search,
     list,
-    pending,
     error,
     page,
     totalPages,

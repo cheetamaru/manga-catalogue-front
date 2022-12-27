@@ -4,8 +4,8 @@
       <v-app-bar
         app
         :model-value="true"
-        style="width: 100%"
-        :density="'compact'"
+        density="compact"
+        class="workaround-app-bar-width"
       >
         <v-btn
           icon
@@ -19,7 +19,7 @@
       <v-fade-transition leave-absolute>
         <div
           v-if="isExtraSpaceAdded"
-          style="height: 48px"
+          class="workaround-temporary-height"
         />
       </v-fade-transition>
       <slot />
@@ -35,3 +35,13 @@ onMounted(() => {
   isExtraSpaceAdded.value = false
 })
 </script>
+
+<style scoped>
+.workaround-app-bar-width {
+  width: 100%;
+}
+
+.workaround-temporary-height {
+  height: 48px;
+}
+</style>
