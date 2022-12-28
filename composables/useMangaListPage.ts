@@ -10,9 +10,7 @@ export const useMangaListPage = () => {
 
   const {
     search,
-    status,
     page,
-    ordering,
     query,
     onUpdateSearch,
     resetSidebarFilters,
@@ -37,13 +35,11 @@ export const useMangaListPage = () => {
   }
 
   return {
-    status,
     search,
     list,
     error,
     page,
     totalPages,
-    ordering,
     loading,
     onUpdateSearch,
     resetSidebarFilters,

@@ -1,9 +1,11 @@
+import { debounceTime } from '~~/constants'
+
 const useSearch = () => useState<string>('search', () => '')
 
 export const useMangaListFiltersSearch = () => {
   const search = useSearch()
 
-  const { updateDebounced } = useDebouncedEntity(search, 200)
+  const { updateDebounced } = useDebouncedEntity(search, debounceTime.search)
 
   const onUpdateSearch = (val: string) => {
     updateDebounced(val)

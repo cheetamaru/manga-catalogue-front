@@ -5,7 +5,7 @@ type VChipMapperValue = {
   'prepend-icon': string
 }
 
-const chipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
+const chipPropsMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
   finished: {
     color: 'indigo',
     'prepend-icon': 'mdi-check-circle',
@@ -29,5 +29,5 @@ const chipMapper: Record<MangaPublishingStatus, VChipMapperValue> = {
 }
 
 export const mangaPublishingStatusDomain = {
-  chipMapper,
+  chipPropsMapper,
 }

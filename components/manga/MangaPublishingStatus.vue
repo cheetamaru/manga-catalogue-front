@@ -19,13 +19,13 @@ const props = defineProps<{
 }>()
 
 const { getStatusNameByValue } = useMangaPublishingStatusName()
-const { chipMapper } = mangaPublishingStatusDomain
+const { chipPropsMapper } = mangaPublishingStatusDomain
 
 const statusName = computed(() => {
   return getStatusNameByValue(props.status ?? 'ongoing')
 })
 
 const propsToBind = computed(() => {
-  return props.status ? chipMapper[props.status] : {}
+  return props.status ? chipPropsMapper[props.status] : {}
 })
 </script>

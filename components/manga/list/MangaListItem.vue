@@ -1,8 +1,8 @@
 <template>
   <v-card
-    max-height="500px"
     hover
     elevation="2"
+    max-height="500px"
     ripple
     :to="to"
   >
