@@ -28,6 +28,7 @@
         inset
         absolute
         border
+        order="1"
       >
         <v-row
           justify="center"
