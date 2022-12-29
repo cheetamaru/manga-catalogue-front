@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   css: [
     'vuetify/lib/styles/main.css',
     '@mdi/font/css/materialdesignicons.min.css',
+    '~/assets/styles.scss',
   ],
   vite: {
     ssr: {
