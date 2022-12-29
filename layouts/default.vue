@@ -23,6 +23,19 @@
         />
       </v-fade-transition>
       <slot />
+      <v-footer
+        app
+        inset
+        absolute
+        border
+      >
+        <v-row
+          justify="center"
+          class="pa-3"
+        >
+          Manga Catalogue - 2022 © Cheetamaru
+        </v-row>
+      </v-footer>
     </v-app>
   </div>
 </template>

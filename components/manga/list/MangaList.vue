@@ -50,6 +50,7 @@
           :length="totalPages"
           density="comfortable"
           rounded
+          class="pt-6"
         />
       </v-container>
     </v-container>

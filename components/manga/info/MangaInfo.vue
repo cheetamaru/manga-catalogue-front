@@ -1,5 +1,5 @@
 <template>
-  <v-main class="bg-grey-lighten-3 consistent-height">
+  <v-main class="bg-grey-lighten-3 h-screen">
     <v-container v-if="pending">
       Loading...
     </v-container>
