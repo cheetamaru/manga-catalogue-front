@@ -15,6 +15,7 @@
         </v-btn>
 
         <v-toolbar-title>Manga Catalogue</v-toolbar-title>
+        <lang-changer />
       </v-app-bar>
       <v-fade-transition leave-absolute>
         <div

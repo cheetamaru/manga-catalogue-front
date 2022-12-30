@@ -15,6 +15,35 @@ export default defineNuxtConfig({
     async (_, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => { config.plugins?.push(vuetify()) })
     },
+    [
+      '@nuxtjs/i18n',
+      {
+        strategy: 'no_prefix',
+        locales: [
+          {
+            code: 'en',
+            iso: 'en-US',
+          },
+          {
+            code: 'ja',
+            iso: 'ja_JP',
+          },
+        ],
+        vueI18n: {
+          legacy: false,
+          defaultLocale: 'en',
+          locale: 'en',
+          messages: {
+            en: {
+              welcome: 'Welcome',
+            },
+            ja: {
+              welcome: 'こんにちは',
+            },
+          },
+        },
+      },
+    ],
   ],
   build: {
     transpile: [

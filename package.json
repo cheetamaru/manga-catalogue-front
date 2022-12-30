@@ -9,6 +9,7 @@
     "generate-types": "node ./scripts/index.js"
   },
   "devDependencies": {
+    "@nuxtjs/i18n": "^8.0.0-beta.7",
     "@types/lodash.debounce": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.29.0",
