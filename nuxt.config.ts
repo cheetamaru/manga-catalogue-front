@@ -1,4 +1,5 @@
 import vuetify from 'vite-plugin-vuetify'
+import { messages, locales } from './locales'
 
 export default defineNuxtConfig({
   css: [
@@ -19,28 +20,12 @@ export default defineNuxtConfig({
       '@nuxtjs/i18n',
       {
         strategy: 'no_prefix',
-        locales: [
-          {
-            code: 'en',
-            iso: 'en-US',
-          },
-          {
-            code: 'ja',
-            iso: 'ja_JP',
-          },
-        ],
+        locales,
         vueI18n: {
           legacy: false,
           defaultLocale: 'en',
           locale: 'en',
-          messages: {
-            en: {
-              welcome: 'Welcome',
-            },
-            ja: {
-              welcome: 'こんにちは',
-            },
-          },
+          messages,
         },
       },
     ],

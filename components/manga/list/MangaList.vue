@@ -12,7 +12,7 @@
                 :append-inner-icon="appendInnerIcon"
                 :append-icon="appendIcon"
                 variant="outlined"
-                placeholder="Search"
+                :placeholder="$t('global.placeholder.search')"
                 clearable
                 @update:model-value="onUpdateSearch"
                 @click:append="toggleSidebar"
