@@ -1,13 +1,9 @@
-import globalEn from './en/global.json'
-import globalJa from './ja/global.json'
+import { en } from './en'
+import { ja } from './ja'
 
 export const messages = {
-  en: {
-    global: globalEn,
-  },
-  ja: {
-    global: globalJa,
-  },
+  en,
+  ja,
 }
 
 export const locales = [

@@ -2,6 +2,7 @@ import { mangaInfoDomain } from '~~/domains/mangaInfoDomain'
 
 export const useMangaInfoPage = () => {
   const route = useRoute()
+  const { t } = useI18n()
 
   const { fetchMangaItem } = useFetchManga()
 
@@ -18,13 +19,13 @@ export const useMangaInfoPage = () => {
   const authors = computed(() => {
     return mangaTitle.value?.authors
       ? mangaInfoDomain.normalizeAuthors(mangaTitle.value.authors)
-      : 'unknown'
+      : t('global.label.unknown')
   })
 
   const genres = computed(() => {
     return mangaTitle.value?.genres
       ? mangaInfoDomain.normalizeGenres(mangaTitle.value?.genres)
-      : 'unknown'
+      : t('global.label.unknown')
   })
 
   return {

@@ -12,7 +12,7 @@
         :aspect-ratio="2/3"
       />
       <v-card-subtitle class="text-center">
-        First volume cover
+        {{ $t('mangaInfo.subtitle.firstCover') }}
       </v-card-subtitle>
     </v-card>
   </v-sheet>

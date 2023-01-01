@@ -11,6 +11,7 @@ type MangaOrderingOption = {
 }
 
 export const useMangaListFiltersOptions = () => {
+  const { t } = useI18n()
   const { getStatusNameByValue } = useMangaPublishingStatusName()
 
   const availableStatuses: MangaPublishingStatus[] = [
@@ -21,31 +22,33 @@ export const useMangaListFiltersOptions = () => {
     'notstarted',
   ]
 
-  const statusOptions: MangaPublishingStatusOption[] = availableStatuses.map((el) => {
+  const statusOptions = computed<MangaPublishingStatusOption[]>(() => availableStatuses.map((el) => {
     return {
       title: getStatusNameByValue(el),
       value: el,
     }
-  })
+  }))
 
-  const orderingOptions: MangaOrderingOption[] = [
-    {
-      title: 'Start date asc',
-      value: 'startDate',
-    },
-    {
-      title: 'Start date desc',
-      value: '-startDate',
-    },
-    {
-      title: 'End date asc',
-      value: 'endDate',
-    },
-    {
-      title: 'End date desc',
-      value: '-endDate',
-    },
-  ]
+  const orderingOptions = computed<MangaOrderingOption[]>(() => {
+    return [
+      {
+        title: t('mangaList.ordering.startDateAsc'),
+        value: 'startDate',
+      },
+      {
+        title: t('mangaList.ordering.startDateDesc'),
+        value: '-startDate',
+      },
+      {
+        title: t('mangaList.ordering.endDateAsc'),
+        value: 'endDate',
+      },
+      {
+        title: t('mangaList.ordering.endDateDesc'),
+        value: '-endDate',
+      },
+    ]
+  })
 
   return {
     statusOptions,

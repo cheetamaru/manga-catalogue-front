@@ -1,0 +1,25 @@
+{
+    "subtitle": {
+        "firstCover": "First volume cover"
+    },
+    "title": {
+        "information": "Information",
+        "synopsis": "Synopsis"
+    },
+    "label": {
+        "status": "Status",
+        "chapterCount": "Chapters",
+        "volumeCount": "Volumes",
+        "authors": "Authors",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "genres": "Genres"
+    },
+    "status": {
+        "finished": "Finished",
+        "ongoing": "Ongoing",
+        "hiatus": "On hiatus",
+        "canceled": "Canceled",
+        "notstarted": "Not started"
+    }
+}

@@ -1,7 +1,7 @@
 <template>
   <v-main class="bg-grey-lighten-3 h-screen">
     <v-container v-if="pending">
-      Loading...
+      {{ $t('global.label.loading') }}
     </v-container>
     <v-container v-else-if="error">
       <v-alert>

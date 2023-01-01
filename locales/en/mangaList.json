@@ -1,0 +1,14 @@
+{
+    "filter": {
+        "placeholder": {
+            "status": "Status",
+            "sort": "Sort"
+        }
+    },
+    "ordering": {
+        "startDateAsc": "Start date asc",
+        "startDateDesc": "Start date desc",
+        "endDateAsc": "End date asc",
+        "endDateDesc": "End date desc"
+    }
+}

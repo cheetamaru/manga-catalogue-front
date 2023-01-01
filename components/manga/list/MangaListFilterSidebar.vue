@@ -11,13 +11,13 @@
           <v-form>
             <v-select
               v-model="status"
-              label="Status"
+              :label="$t('mangaList.filter.placeholder.status')"
               :items="statusOptions"
               clearable
             />
             <v-select
               v-model="ordering"
-              label="Sort"
+              :label="$t('mangaList.filter.placeholder.sort')"
               :items="orderingOptions"
               clearable
             />

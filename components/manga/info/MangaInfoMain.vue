@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="pa-3">
     <div class="text-h5 font-weight-bold">
-      Synopsis
+      {{ $t('mangaInfo.title.synopsis') }}
     </div>
     <v-divider class="pb-2" />
     <div>{{ mangaTitle?.description }}</div>

@@ -27,10 +27,10 @@
         {{ error }}
       </v-alert>
       <v-alert v-else-if="loading">
-        Loading...
+        {{ $t('global.label.loading') }}
       </v-alert>
       <v-alert v-else-if="isListEmpty">
-        Search is empty!
+        {{ $t('global.label.searchEmpty') }}
       </v-alert>
       <v-container v-else>
         <v-row>

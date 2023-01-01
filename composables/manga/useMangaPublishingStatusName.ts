@@ -1,16 +1,18 @@
 import type { MangaPublishingStatus } from '~~/types/Types'
 
 export const useMangaPublishingStatusName = () => {
+  const { t } = useI18n()
+
   const nameMapper: Record<MangaPublishingStatus, string> = {
-    finished: 'Finished',
-    ongoing: 'Ongoing',
-    hiatus: 'On hiatus',
-    canceled: 'Canceled',
-    notstarted: 'Not started',
+    finished: 'mangaInfo.status.finished',
+    ongoing: 'mangaInfo.status.ongoing',
+    hiatus: 'mangaInfo.status.hiatus',
+    canceled: 'mangaInfo.status.canceled',
+    notstarted: 'mangaInfo.status.notstarted',
   }
 
   const getStatusNameByValue = (val: MangaPublishingStatus) => {
-    return nameMapper[val]
+    return t(nameMapper[val])
   }
 
   return {

@@ -16,7 +16,6 @@
         >
           <v-select
             v-model="locale"
-            label="Lang"
             :items="items"
             variant="underlined"
             single-line
@@ -30,7 +29,7 @@
 <script setup lang="ts">
 const { locale } = useI18n()
 
-const items = computed(() => [
+const items = [
   {
     title: 'English',
     value: 'en',
@@ -39,5 +38,5 @@ const items = computed(() => [
     title: '日本語',
     value: 'ja',
   },
-])
+]
 </script>

@@ -1,5 +1,10 @@
 {
     "placeholder": {
         "search": "Search"
+    },
+    "label": {
+        "loading": "Loading...",
+        "searchEmpty": "Search is empty",
+        "unknown": "unknown"
     }
 }

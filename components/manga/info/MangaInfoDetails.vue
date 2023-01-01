@@ -2,11 +2,13 @@
   <v-sheet class="pa-3">
     <div>
       <div class="text-h5 font-weight-bold">
-        Information
+        {{ $t('mangaInfo.title.information') }}
       </div>
       <v-divider class="pb-2" />
       <div>
-        <strong>Status</strong>: <MangaPublishingStatus :status="mangaTitle?.status" />
+        <strong>
+          {{ $t('mangaInfo.label.status') }}
+        </strong>: <MangaPublishingStatus :status="mangaTitle?.status" />
       </div>
       <div
         v-for="item of detailsList"
@@ -30,12 +32,14 @@ const props = defineProps<{
 
 const { createDetailsItem } = useMangaInfoDetails()
 
+const { t } = useI18n()
+
 const detailsList = computed<MangaInfoDetailsItem[]>(() => [
-  createDetailsItem('Chapters', props.mangaTitle?.chapterCount),
-  createDetailsItem('Volumes', props.mangaTitle?.volumeCount),
-  createDetailsItem('Authors', props.authors),
-  createDetailsItem('Start Date', props.mangaTitle?.startDate),
-  createDetailsItem('End Date', props.mangaTitle?.endDate || '-'),
-  createDetailsItem('Genres', props.genres),
-])
+  createDetailsItem('mangaInfo.label.chapterCount', props.mangaTitle?.chapterCount),
+  createDetailsItem('mangaInfo.label.volumeCount', props.mangaTitle?.volumeCount),
+  createDetailsItem('mangaInfo.label.authors', props.authors),
+  createDetailsItem('mangaInfo.label.startDate', props.mangaTitle?.startDate),
+  createDetailsItem('mangaInfo.label.endDate', props.mangaTitle?.endDate || '-'),
+  createDetailsItem('mangaInfo.label.genres', props.genres),
+].map((el) => ({ ...el, title: t(el.title) })))
 </script>
