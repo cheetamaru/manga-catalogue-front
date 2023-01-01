@@ -1,0 +1,25 @@
+{
+    "subtitle": {
+        "firstCover": "上巻の表紙"
+    },
+    "title": {
+        "information": "情報",
+        "synopsis": "あらすじ"
+    },
+    "label": {
+        "status": "公開状況",
+        "chapterCount": "章数",
+        "volumeCount": "巻数",
+        "authors": "著者",
+        "startDate": "発行開始日",
+        "endDate": "発行終了日",
+        "genres": "ジャンル"
+    },
+    "status": {
+        "finished": "出版終了",
+        "ongoing": "進行中",
+        "hiatus": "裂孔に",
+        "canceled": "出版中止",
+        "notstarted": "出版を開始していない"
+    }
+}

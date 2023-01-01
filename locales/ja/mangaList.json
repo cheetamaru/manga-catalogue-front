@@ -1,0 +1,14 @@
+{
+    "filter": {
+        "placeholder": {
+            "status": "公開状況",
+            "sort": "順序付け"
+        }
+    },
+    "ordering": {
+        "startDateAsc": "開始日昇順",
+        "startDateDesc": "開始日降順",
+        "endDateAsc": "終了日昇順",
+        "endDateDesc": "終了日降順"
+    }
+}

@@ -1,5 +1,10 @@
 {
     "placeholder": {
         "search": "サーチ"
+    },
+    "label": {
+        "loading": "ローディング中",
+        "searchEmpty": "検索は空です",
+        "unknown": "不詳"
     }
 }
