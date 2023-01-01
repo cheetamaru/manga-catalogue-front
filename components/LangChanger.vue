@@ -15,10 +15,11 @@
           prepend-icon="mdi-translate"
         >
           <v-select
-            v-model="locale"
+            :model-value="locale"
             :items="items"
             variant="underlined"
             single-line
+            @update:model-value="onChangeLocale"
           />
         </v-list-item>
       </v-list>
@@ -27,7 +28,11 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
+const { locale, setLocale } = useI18n()
+
+const onChangeLocale = (locale: string) => {
+  setLocale(locale)
+}
 
 const items = [
   {
