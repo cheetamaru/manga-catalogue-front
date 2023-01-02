@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-app id="inspire">
+    <v-app
+      id="inspire"
+    >
       <v-app-bar
         app
         :model-value="true"

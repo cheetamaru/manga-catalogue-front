@@ -1,5 +1,5 @@
 <template>
-  <v-main class="bg-grey-lighten-3 h-screen">
+  <v-main class="bg-grey-lighten-3 h-100">
     <v-container v-if="pending">
       {{ $t('global.label.loading') }}
     </v-container>

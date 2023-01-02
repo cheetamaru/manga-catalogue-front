@@ -37,11 +37,13 @@
           <v-col
             v-for="item of list"
             :key="item.id"
-            cols="3"
+            align-self="center"
+            class="d-flex justify-center"
           >
             <MangaListItem
               :item="item"
               :to="getMangaInfoRoute(item?.id)"
+              width="250px"
             />
           </v-col>
         </v-row>
