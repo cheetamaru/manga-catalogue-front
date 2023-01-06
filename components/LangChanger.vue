@@ -1,6 +1,9 @@
 <template>
   <ClientOnly>
-    <v-menu :close-on-content-click="false">
+    <v-menu
+      v-model="isOpened"
+      :close-on-content-click="false"
+    >
       <template #activator="{ props }">
         <v-btn
           icon="mdi-cog-outline"
@@ -30,8 +33,11 @@
 <script setup lang="ts">
 const { locale, setLocale } = useI18n()
 
+const isOpened = ref(false)
+
 const onChangeLocale = (locale: string) => {
   setLocale(locale)
+  isOpened.value = false
 }
 
 const items = [
