@@ -16,7 +16,7 @@
           <v-icon>mdi-alpha-m-box</v-icon>
         </v-btn>
 
-        <v-toolbar-title>Manga Catalogue</v-toolbar-title>
+        <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
         <lang-changer />
       </v-app-bar>
       <v-fade-transition leave-absolute>
@@ -37,7 +37,7 @@
           justify="center"
           class="pa-3"
         >
-          Manga Catalogue - 2022 © Cheetamaru
+          {{ footerText }}
         </v-row>
       </v-footer>
     </v-app>
@@ -45,8 +45,12 @@
 </template>
 
 <script setup>
+import { branding } from '~~/constants';
+
 // for fixing bug in vuetify: https://github.com/vuetifyjs/vuetify/issues/15202
 const isExtraSpaceAdded = ref(true)
+
+const { appTitle, footerText } = branding
 
 onMounted(() => {
   isExtraSpaceAdded.value = false
