@@ -43,7 +43,6 @@
             <MangaListItem
               :item="item"
               :to="getMangaInfoRoute(item?.id)"
-              width="250px"
             />
           </v-col>
         </v-row>

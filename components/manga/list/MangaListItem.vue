@@ -2,8 +2,8 @@
   <v-card
     hover
     elevation="2"
+    width="250px"
     max-height="500px"
-    ripple
     :to="to"
   >
     <v-img
