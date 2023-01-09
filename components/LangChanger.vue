@@ -19,7 +19,7 @@
         >
           <v-select
             :model-value="locale"
-            :items="items"
+            :items="langChangerOptions"
             variant="underlined"
             single-line
             @update:model-value="onChangeLocale"
@@ -31,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+import { langChangerOptions } from '~~/locales';
+
 const { locale, setLocale } = useI18n()
 
 const isOpened = ref(false)
@@ -39,15 +41,4 @@ const onChangeLocale = (locale: string) => {
   setLocale(locale)
   isOpened.value = false
 }
-
-const items = [
-  {
-    title: 'English',
-    value: 'en',
-  },
-  {
-    title: '日本語',
-    value: 'ja',
-  },
-]
 </script>
