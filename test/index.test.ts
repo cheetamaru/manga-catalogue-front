@@ -1,5 +1,7 @@
-import { it, expect } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
-it('should jave length of 4', () => {
-  expect('1234'.length).toBe(4)
+describe('test test', () => {
+  it('should be length of 4', () => {
+    expect('1234'.length).toBe(4)
+  })
 })
