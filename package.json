@@ -7,7 +7,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "generate-types": "node ./scripts/index.js",
-    "test": "vitest --run"
+    "test": "vitest run"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "^8.0.0-beta.7",
