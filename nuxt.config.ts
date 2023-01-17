@@ -1,5 +1,4 @@
 import vuetify from 'vite-plugin-vuetify'
-import vue from '@vitejs/plugin-vue'
 import { messages, locales } from './locales'
 
 export default defineNuxtConfig({
@@ -12,7 +11,6 @@ export default defineNuxtConfig({
     ssr: {
       noExternal: ['vuetify'],
     },
-    plugins: [vue()],
   },
   modules: [
     async (_, nuxt) => {
