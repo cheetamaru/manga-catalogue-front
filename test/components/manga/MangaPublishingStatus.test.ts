@@ -4,7 +4,7 @@ import MangaPublishingStatus from '../../../components/manga/MangaPublishingStat
 
 describe('MangaPublishingStatus', () => {
   it('should render', () => {
-    const component = mount(MangaPublishingStatus)
+    const component = mount(MangaPublishingStatus, {})
     expect(component).toBeTruthy()
   })
 })
