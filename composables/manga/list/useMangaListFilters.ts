@@ -1,4 +1,5 @@
-import type { MangaPublishingStatus, MangaOrderingOptionValue } from '~~/types/Types'
+import { LocationQuery } from 'vue-router'
+import type { MangaPublishingStatus, MangaOrderingOptionValue, MangaListFetchQuery } from '~~/types/Types'
 
 const useStatus = () => useState<MangaPublishingStatus | undefined>('status')
 const usePage = () => useState<number>('page', () => 1)
@@ -15,7 +16,7 @@ export const useMangaListFilters = () => {
   const page = usePage()
   const ordering = useOrdering()
 
-  const query = computed(() => {
+  const query = computed<MangaListFetchQuery>(() => {
     return {
       search: search.value || undefined,
       status: status.value,
@@ -24,22 +25,30 @@ export const useMangaListFilters = () => {
     }
   })
 
-  watch(query, (val) => {
-    const newQuery = {
-      page: val.page === 1 ? undefined : Number(val.page),
-      status: val.status || undefined,
-      ordering: val.ordering || undefined,
-      search: val.search || undefined,
+  const composeNewQuery = (query: MangaListFetchQuery) => {
+    return {
+      page: query.page === 1 ? undefined : Number(query.page),
+      status: query.status || undefined,
+      ordering: query.ordering || undefined,
+      search: query.search || undefined,
     }
+  }
+
+  const updateQueryStateByRoute = (routeQuery: LocationQuery) => {
+    search.value = routeQuery.search ? String(routeQuery.search) : ''
+    status.value = routeQuery.status ? String(routeQuery.status) as MangaPublishingStatus : undefined
+    page.value = routeQuery.page ? Number(routeQuery.page) : 1
+    ordering.value = routeQuery.ordering ? String(routeQuery.ordering) as MangaOrderingOptionValue : undefined
+  }
+
+  watch(query, (val) => {
+    const newQuery = composeNewQuery(val)
 
     router.push({ query: newQuery })
   })
 
-  watch(() => route.query, () => {
-    search.value = route.query.search ? String(route.query.search) : ''
-    status.value = route.query.status ? String(route.query.status) as MangaPublishingStatus : undefined
-    page.value = route.query.page ? Number(route.query.page) : 1
-    ordering.value = route.query.ordering ? String(route.query.ordering) as MangaOrderingOptionValue : undefined
+  watch(() => route.query, (val) => {
+    updateQueryStateByRoute(val)
   }, {
     immediate: true,
   })
