@@ -16,7 +16,7 @@ export const useMangaListFilters = () => {
   const page = usePage()
   const ordering = useOrdering()
 
-  const query = computed<MangaListFetchQuery>(() => {
+  const stateQuery = computed<MangaListFetchQuery>(() => {
     return {
       search: search.value || undefined,
       status: status.value,
@@ -41,7 +41,7 @@ export const useMangaListFilters = () => {
     ordering.value = routeQuery.ordering ? String(routeQuery.ordering) as MangaOrderingOptionValue : undefined
   }
 
-  watch(query, (val) => {
+  watch(stateQuery, (val) => {
     const newQuery = composeNewQuery(val)
 
     router.push({ query: newQuery })
@@ -90,7 +90,7 @@ export const useMangaListFilters = () => {
     status,
     page,
     ordering,
-    query,
+    query: stateQuery,
     onUpdateSearch,
     resetSidebarFilters,
     appendInnerIcon,
