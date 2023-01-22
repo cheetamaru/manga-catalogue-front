@@ -42,9 +42,9 @@ export const useMangaListFilters = () => {
   }
 
   watch(stateQuery, (val) => {
-    const newQuery = composeNewQuery(val)
+    const query = composeNewQuery(val)
 
-    router.push({ query: newQuery })
+    router.push({ query })
   })
 
   watch(() => route.query, (val) => {
