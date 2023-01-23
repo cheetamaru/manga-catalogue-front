@@ -1,8 +1,10 @@
 import { LocationQuery } from 'vue-router'
 import type { MangaPublishingStatus, MangaOrderingOptionValue, MangaListFetchQuery } from '~~/types/Types'
 
+const defaultPage = 1
+
 const useStatus = () => useState<MangaPublishingStatus | undefined>('status')
-const usePage = () => useState<number>('page', () => 1)
+const usePage = () => useState<number>('page', () => defaultPage)
 const useOrdering = () => useState<MangaOrderingOptionValue | undefined>('ordering')
 
 export const useMangaListFilters = () => {
@@ -27,7 +29,7 @@ export const useMangaListFilters = () => {
 
   const composeNewQuery = (query: MangaListFetchQuery) => {
     return {
-      page: query.page === 1 ? undefined : Number(query.page),
+      page: query.page === defaultPage ? undefined : Number(query.page),
       status: query.status || undefined,
       ordering: query.ordering || undefined,
       search: query.search || undefined,
@@ -37,7 +39,7 @@ export const useMangaListFilters = () => {
   const updateQueryStateByRoute = (routeQuery: LocationQuery) => {
     search.value = routeQuery.search ? String(routeQuery.search) : ''
     status.value = routeQuery.status ? String(routeQuery.status) as MangaPublishingStatus : undefined
-    page.value = routeQuery.page ? Number(routeQuery.page) : 1
+    page.value = routeQuery.page ? Number(routeQuery.page) : defaultPage
     ordering.value = routeQuery.ordering ? String(routeQuery.ordering) as MangaOrderingOptionValue : undefined
   }
 
@@ -60,11 +62,11 @@ export const useMangaListFilters = () => {
   ])
 
   watch(paramsToResetPageNumber, () => {
-    if (page.value === 1) {
+    if (page.value === defaultPage) {
       return
     }
 
-    page.value = 1
+    page.value = defaultPage
   })
 
   const sidebarFilters = computed(() => [
