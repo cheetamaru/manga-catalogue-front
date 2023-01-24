@@ -31,7 +31,9 @@ export const useMangaListPage = () => {
   })
 
   const getMangaInfoRoute = (id: number | undefined) => {
-    return { path: `/manga-info/${id}` }
+    return {
+      path: `/manga-info/${id}`,
+    }
   }
 
   return {
