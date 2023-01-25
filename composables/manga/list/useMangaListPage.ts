@@ -1,5 +1,9 @@
 const limit = 10
 
+const getTotalPages = (totalItems: number, limit: number) => {
+  return Math.ceil(totalItems / limit)
+}
+
 export const useMangaListPage = () => {
   const { fetchMangaList } = useFetchManga()
 
@@ -22,7 +26,7 @@ export const useMangaListPage = () => {
 
   const list = computed(() => data.value?.results || [])
   const total = computed(() => data.value?.count || 0)
-  const totalPages = computed(() => Math.ceil(total.value / limit))
+  const totalPages = computed(() => getTotalPages(total.value, limit))
 
   const { loading } = useDebouncedLoading(pending)
 
