@@ -16,16 +16,27 @@ export const useMangaInfoPage = () => {
 
   const { data: mangaTitle, pending, error } = fetchMangaItem(mangaTitleId.value)
 
-  const authors = computed(() => {
-    return mangaTitle.value?.authors
-      ? mangaInfoDomain.normalizeAuthors(mangaTitle.value.authors)
+  const normalizeInfoLabel = <T>(
+    itemToNormalize: T | undefined,
+    normalizer: (val: T) => string,
+  ) => {
+    return itemToNormalize
+      ? normalizer(itemToNormalize)
       : t('global.label.unknown')
+  }
+
+  const authors = computed(() => {
+    return normalizeInfoLabel(
+      mangaTitle.value?.authors,
+      mangaInfoDomain.normalizeAuthors,
+    )
   })
 
   const genres = computed(() => {
-    return mangaTitle.value?.genres
-      ? mangaInfoDomain.normalizeGenres(mangaTitle.value?.genres)
-      : t('global.label.unknown')
+    return normalizeInfoLabel(
+      mangaTitle.value?.genres,
+      mangaInfoDomain.normalizeGenres,
+    )
   })
 
   return {
