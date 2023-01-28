@@ -5,11 +5,9 @@
 </template>
 
 <script setup lang="ts">
+import { branding } from './constants';
+
 useHead({
-  title: 'Manga Catalogue',
+  title: branding.appTitle,
 })
 </script>
-
-<style>
-
-</style>
