@@ -34,12 +34,16 @@ const { createDetailsItem } = useMangaInfoDetails()
 
 const { t } = useI18n()
 
-const detailsList = computed<MangaInfoDetailsItem[]>(() => [
+const detailsListRaw = computed<MangaInfoDetailsItem[]>(() => [
   createDetailsItem('mangaInfo.label.chapterCount', props.mangaTitle?.chapterCount),
   createDetailsItem('mangaInfo.label.volumeCount', props.mangaTitle?.volumeCount),
   createDetailsItem('mangaInfo.label.authors', props.authors),
   createDetailsItem('mangaInfo.label.startDate', props.mangaTitle?.startDate),
   createDetailsItem('mangaInfo.label.endDate', props.mangaTitle?.endDate || '-'),
   createDetailsItem('mangaInfo.label.genres', props.genres),
-].map((el) => ({ ...el, title: t(el.title) })))
+])
+
+const mapTranslate = (el: MangaInfoDetailsItem) => ({ ...el, title: t(el.title) })
+
+const detailsList = computed<MangaInfoDetailsItem[]>(() => detailsListRaw.value.map(mapTranslate))
 </script>
