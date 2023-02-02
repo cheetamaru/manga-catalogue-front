@@ -9,7 +9,7 @@
         v-if="mangaTitle?.firstCoverImage"
         :src="mangaTitle.firstCoverImage"
         :lazy-src="mangaTitle.firstCoverImage"
-        :aspect-ratio="2/3"
+        :aspect-ratio="coverParams.aspectRatio"
       />
       <v-card-subtitle class="text-center">
         {{ $t('mangaInfo.subtitle.firstCover') }}
@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import { coverParams } from '~~/constants';
 import { MangaTitle } from '~~/types/ApiTypes';
 
 defineProps<{

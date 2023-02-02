@@ -10,7 +10,7 @@
       v-if="item?.firstCoverImage"
       :src="item.firstCoverImage"
       :lazy-src="item.firstCoverImage"
-      :aspect-ratio="2/3"
+      :aspect-ratio="coverParams.aspectRatio"
       max-height="300px"
     />
 
@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import { MangaTitle } from '~~/types/ApiTypes';
 import type { RouteLocationRaw } from 'vue-router'
+import { coverParams } from '~~/constants';
 
 defineProps<{
     item: MangaTitle | null
