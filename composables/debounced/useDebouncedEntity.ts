@@ -1,7 +1,8 @@
 import debounce from 'lodash.debounce'
 import type { Ref } from 'vue'
+import { debounceTime } from '~~/constants'
 
-export const useDebouncedEntity = <T>(entity: Ref<T>, timeout = 300) => {
+export const useDebouncedEntity = <T>(entity: Ref<T>, timeout = debounceTime.defaultDebounce) => {
   const update = (val: T) => {
     entity.value = val
   }
