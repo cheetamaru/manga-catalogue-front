@@ -23,15 +23,21 @@
         </v-container>
       </v-form>
 
-      <v-alert v-if="error">
-        {{ error }}
-      </v-alert>
-      <v-alert v-else-if="loading">
-        {{ $t('global.label.loading') }}
-      </v-alert>
-      <v-alert v-else-if="isListEmpty">
-        {{ $t('global.label.searchEmpty') }}
-      </v-alert>
+      <v-container v-if="error">
+        <v-alert type="error">
+          {{ error }}
+        </v-alert>
+      </v-container>
+      <v-container v-else-if="loading">
+        <v-alert>
+          {{ $t('global.label.loading') }}
+        </v-alert>
+      </v-container>
+      <v-container v-else-if="isListEmpty">
+        <v-alert type="info">
+          {{ $t('global.label.searchEmpty') }}
+        </v-alert>
+      </v-container>
       <v-container v-else>
         <v-row>
           <v-col

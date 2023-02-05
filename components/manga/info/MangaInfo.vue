@@ -4,7 +4,7 @@
       {{ $t('global.label.loading') }}
     </v-container>
     <v-container v-else-if="error">
-      <v-alert>
+      <v-alert type="error">
         {{ error }}
       </v-alert>
     </v-container>
