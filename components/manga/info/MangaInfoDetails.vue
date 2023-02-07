@@ -1,10 +1,9 @@
 <template>
   <v-sheet class="pa-3">
     <div>
-      <div class="text-h5 font-weight-bold">
+      <div class="text-h5 font-weight-bold manga-catalogue-divider">
         {{ $t('mangaInfo.title.information') }}
       </div>
-      <v-divider class="pb-2" />
       <div>
         <strong>
           {{ $t('mangaInfo.label.status') }}

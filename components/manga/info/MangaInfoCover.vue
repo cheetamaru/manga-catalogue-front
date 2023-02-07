@@ -1,9 +1,8 @@
 <template>
   <v-sheet class="pa-3">
-    <div class="text-h4 text-center mb-2">
+    <div class="text-h4 text-center mb-2 manga-catalogue-divider">
       {{ mangaTitle?.title }}
     </div>
-    <v-divider class="pb-2" />
     <v-card flat>
       <v-img
         v-if="mangaTitle?.firstCoverImage"
