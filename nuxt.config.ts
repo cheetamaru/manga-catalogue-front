@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    '@vue-macros/nuxt',
     async (_, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', config => { config.plugins?.push(vuetify()) })
     },
